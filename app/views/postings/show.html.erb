@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @posting.user %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @posting.user %>
+</p>
+
+<p>
+  <strong>Skill:</strong>
+  <%= @posting.skill %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @posting.location %>
+</p>
+
+<p>
+  <strong>Posting body:</strong>
+  <%= @posting.posting_body %>
+</p>
+
+<p>
+  <strong>Open posting:</strong>
+  <%= @posting.open_posting %>
+</p>
+
+<p>
+  <strong>Is request:</strong>
+  <%= @posting.is_request %>
+</p>
+
+<p>
+  <strong>Days duration:</strong>
+  <%= @posting.days_duration %>
+</p>
+
+<%= link_to 'Edit', edit_posting_path(@posting) %> |
+<%= link_to 'Back', postings_path %>

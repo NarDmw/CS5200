@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @locations_skill.location %>
+</p>
+
+<p>
+  <strong>Skill:</strong>
+  <%= @locations_skill.skill %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @locations_skill.user %>
+</p>
+
+<%= link_to 'Edit', edit_locations_skill_path(@locations_skill) %> |
+<%= link_to 'Back', locations_skills_path %>
