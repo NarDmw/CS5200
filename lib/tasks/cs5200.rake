@@ -6,7 +6,7 @@ namespace :cs5200 do
   end
 
   def createLocations
-    cities_file = '/home/nardmw/Sites/CS5200/lib/textfiles/cities.txt'
+    cities_file = 'lib/textfiles/cities.txt'
     Location.transaction do
       file = File.open(cities_file) do |f|
         f.each_line do |line|
@@ -18,9 +18,9 @@ namespace :cs5200 do
   end
 
   def createUsers
-    first_name_file = '/home/nardmw/Sites/CS5200/lib/textfiles/first_names.txt'
+    first_name_file = 'lib/textfiles/first_names.txt'
     first_names = File.readlines(first_name_file).map(&:chomp)
-    last_name_file = '/home/nardmw/Sites/CS5200/lib/textfiles/last_names.txt'
+    last_name_file = 'lib/textfiles/last_names.txt'
     last_names = File.readlines(last_name_file).map(&:chomp)
 
     User.transaction do
