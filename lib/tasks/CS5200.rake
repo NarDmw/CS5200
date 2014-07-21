@@ -1,4 +1,4 @@
-namespace :cs5200 do
+namespace :CS5200 do
   desc 'Generates data for CS5200'
   task generate_data: :environment do
     #Location.count == 0 ? createLocations : 'Locations already uploaded'
