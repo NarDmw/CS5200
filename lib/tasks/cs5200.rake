@@ -19,16 +19,22 @@ namespace :cs5200 do
 
   def createUsers
     first_name_file = 'lib/textfiles/first_names.txt'
-    first_names = File.readlines(first_name_file).map(&:chomp)
     last_name_file = 'lib/textfiles/last_names.txt'
+    emails_file = 'lib/textfiles/email_providers.txt'
+
+
+    first_names = File.readlines(first_name_file).map(&:chomp)
     last_names = File.readlines(last_name_file).map(&:chomp)
+    email_domains = File.readlines(emails_file).map(&:chomp)
 
     User.transaction do
       (1..100).each do
         random_first_name = first_names.sample
         random_last_name = last_names.sample
+        random_email_provider = email_domains.sample
+
         user_name = "#{random_first_name}_#{random_last_name}".downcase
-        email = "#{user_name}@email_provider.com"
+        email = "#{user_name}@#{random_email_provider}"
 
         User.create(user_name: user_name, first_name: random_first_name, last_name: random_last_name, email: email)
       end
