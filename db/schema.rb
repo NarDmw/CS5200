@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20140716205529) do
     t.string "name", limit: 45
   end
 
-  create_table "skills", force: true do |t|
+  create_table "skills.txt", force: true do |t|
     t.integer "SkillCategory_id"
     t.string  "skill_name",       limit: 45
   end
