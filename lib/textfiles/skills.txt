@@ -111,13 +111,12 @@ Tutoring	AP® Government and Politics
 Housework	Gardening
 Housework	Painting
 Housework	Landscaping
+Housework	Redecorating
 Housework	Cooking
 Housework	Moving
 Housework	Driving
 Housework	Housecleaning
 Housework	Pet Sitting
-Housework	Redecorating
-Skills	Massage
 Skills	Massage
 Skills	Artwork
 Skills	Web Programming

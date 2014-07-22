@@ -1,18 +1,15 @@
 namespace :CS5200 do
   desc 'Generates data for CS5200'
   task generate_data: :environment do
-    puts "Uploading Locations"
     upload_locations unless Location.any?
-
-    puts "Creating Users"
     create_users unless User.any?
-
-    puts 'Creating Skill Categories'
-    create_skill_categories
+    upload_skills unless Skill.any?
 
   end
 
   def upload_locations
+    puts "Uploading Locations"
+
     cities_file = 'lib/textfiles/cities.txt'
     Location.transaction do
       text = File.open(cities_file).read
@@ -24,8 +21,9 @@ namespace :CS5200 do
   end
 
   def create_users
-    locations = Location.all
+    puts "Creating Users"
 
+    locations = Location.all
     User.transaction do
       used_names = Set.new
       while User.count < 1000 do
@@ -45,18 +43,20 @@ namespace :CS5200 do
     end
   end
 
-  def create_skills
-    skills_file = 'lib/textfiles/skills.txt.txt'
+  def upload_skills
+    puts 'Creating Skills'
+
+    skills_file = 'lib/textfiles/skills.txt'
     Skill.transaction do
       text = File.open(skills_file).read
       text.each_line do |line|
         tokens = line.split("\t").map(&:chomp)
-        Skill.create(category: tokens[0], name: name[1])
+        Skill.create(category: tokens[0], name: tokens[1])
       end
     end
   end
 
-  def createConversations
+  def create_conversations
 
   end
 
