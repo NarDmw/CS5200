@@ -48,6 +48,7 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.1)
     libv8 (3.16.14.3)
+    lorem_ipsum_amet (0.6.2)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -126,6 +127,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)
   jquery-rails
+  lorem_ipsum_amet
   pg
   rails (= 4.1.4)
   rails_12factor
