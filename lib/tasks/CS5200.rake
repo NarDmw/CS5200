@@ -45,24 +45,13 @@ namespace :CS5200 do
     end
   end
 
-
-  def create_skill_categories
-    skill_categories = ['Chores', 'Lessons', 'Tutoring', 'Music', 'Activities', 'Specialized Skills']
-    SkillCategory.transaction do
-      skills_categories.each do |skill_category|
-        SkillCategory.create(name: skill_category)
-      end
-    end
-  end
-
   def create_skills
     skills_file = 'lib/textfiles/skills.txt.txt'
-    skill_categories = SkillCategories.all
     Skill.transaction do
       text = File.open(skills_file).read
       text.each_line do |line|
         tokens = line.split("\t").map(&:chomp)
-        Location.create(state: tokens[1], city: tokens[0])
+        Skill.create()
       end
     end
   end

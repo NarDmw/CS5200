@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140716205529) do
+ActiveRecord::Schema.define(version: 20140722173604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,14 @@ ActiveRecord::Schema.define(version: 20140716205529) do
 
   add_index "conversations", ["posting_id"], name: "index_conversations_on_posting_id", using: :btree
   add_index "conversations", ["user_id"], name: "index_conversations_on_user_id", using: :btree
+
+  create_table "feedback_messages", force: true do |t|
+    t.string   "contact_email"
+    t.string   "name"
+    t.string   "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "locations", force: true do |t|
     t.string "state", limit: 2
@@ -71,12 +79,10 @@ ActiveRecord::Schema.define(version: 20140716205529) do
     t.string "name", limit: 45
   end
 
-  create_table "skills.txt", force: true do |t|
-    t.integer "SkillCategory_id"
-    t.string  "skill_name",       limit: 45
+  create_table "skills", force: true do |t|
+    t.string "skill_category", limit: 45
+    t.string "skill_name",     limit: 45
   end
-
-  add_index "skills", ["SkillCategory_id"], name: "index_skills_on_SkillCategory_id", using: :btree
 
   create_table "skills_users", force: true do |t|
     t.integer "skill_id"

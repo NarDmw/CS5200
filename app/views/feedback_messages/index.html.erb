@@ -1,0 +1,27 @@
+<h1>Listing feedback_messages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Contact email</th>
+      <th>Body</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @feedback_messages.each do |feedback_message| %>
+      <tr>
+        <td><%= feedback_message.contact_email %></td>
+        <td><%= feedback_message.body %></td>
+        <td><%= link_to 'Show', feedback_message %></td>
+        <td><%= link_to 'Edit', edit_feedback_message_path(feedback_message) %></td>
+        <td><%= link_to 'Destroy', feedback_message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Feedback message', new_feedback_message_path %>

@@ -1,0 +1,25 @@
+<%= form_for(@feedback_message) do |f| %>
+  <% if @feedback_message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@feedback_message.errors.count, "error") %> prohibited this feedback_message from being saved:</h2>
+
+      <ul>
+      <% @feedback_message.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :contact_email %><br>
+    <%= f.text_field :contact_email %>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br>
+    <%= f.text_field :body %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
