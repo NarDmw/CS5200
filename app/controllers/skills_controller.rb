@@ -1,28 +1,28 @@
 class SkillsController < ApplicationController
   before_action :set_skill, only: [:show, :edit, :update, :destroy]
 
-  # GET /skills.txt
-  # GET /skills.txt.json
+  # GET /skills
+  # GET /skills.json
   def index
     @skills = Skill.all
   end
 
-  # GET /skills.txt/1
-  # GET /skills.txt/1.json
+  # GET /skills/1
+  # GET /skills/1.json
   def show
   end
 
-  # GET /skills.txt/new
+  # GET /skills/new
   def new
     @skill = Skill.new
   end
 
-  # GET /skills.txt/1/edit
+  # GET /skills/1/edit
   def edit
   end
 
-  # POST /skills.txt
-  # POST /skills.txt.json
+  # POST /skills
+  # POST /skills.json
   def create
     @skill = Skill.new(skill_params)
 
@@ -37,8 +37,8 @@ class SkillsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /skills.txt/1
-  # PATCH/PUT /skills.txt/1.json
+  # PATCH/PUT /skills/1
+  # PATCH/PUT /skills/1.json
   def update
     respond_to do |format|
       if @skill.update(skill_params)
@@ -51,8 +51,8 @@ class SkillsController < ApplicationController
     end
   end
 
-  # DELETE /skills.txt/1
-  # DELETE /skills.txt/1.json
+  # DELETE /skills/1
+  # DELETE /skills/1.json
   def destroy
     @skill.destroy
     respond_to do |format|
@@ -69,6 +69,6 @@ class SkillsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def skill_params
-      params.require(:skill).permit(:SkillCategory_id, :skill_name)
+      params.require(:skill).permit(:category, :name)
     end
 end

@@ -24,3 +24,6 @@ pickle-email-*.html
 # ignore IntelliJ files
 *.iml
 /.idea
+
+# ignore test files
+/test

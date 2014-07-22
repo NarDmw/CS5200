@@ -51,7 +51,7 @@ namespace :CS5200 do
       text = File.open(skills_file).read
       text.each_line do |line|
         tokens = line.split("\t").map(&:chomp)
-        Skill.create()
+        Skill.create(category: tokens[0], name: name[1])
       end
     end
   end

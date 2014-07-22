@@ -67,7 +67,8 @@ ActiveRecord::Schema.define(version: 20140722211814) do
     t.integer  "user_id"
     t.integer  "skill_id"
     t.integer  "location_id"
-    t.string   "posting_body",  limit: 500
+    t.string   "header",        limit: 45
+    t.text     "body"
     t.boolean  "open_posting"
     t.boolean  "is_request"
     t.integer  "days_duration"
@@ -84,8 +85,10 @@ ActiveRecord::Schema.define(version: 20140722211814) do
   end
 
   create_table "skills", force: true do |t|
-    t.string "skill_category", limit: 45
-    t.string "skill_name",     limit: 45
+    t.string   "category",   limit: 45
+    t.string   "name",       limit: 45
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "skills_users", force: true do |t|
