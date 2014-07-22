@@ -6,13 +6,19 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :conversations
+
   resources :locations
+
   resources :locations_skills
+
   resources :messages
+
   resources :postings
+
   resources :skills
-  resources :skills_users
+
   resources :users
+
   resources :feedback_messages
 
 

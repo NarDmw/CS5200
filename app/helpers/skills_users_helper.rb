@@ -1,2 +1,0 @@
-module SkillsUsersHelper
-end

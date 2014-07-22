@@ -4,7 +4,6 @@ namespace :CS5200 do
     upload_locations unless Location.any?
     create_users unless User.any?
     upload_skills unless Skill.any?
-
   end
 
   def upload_locations
@@ -26,7 +25,7 @@ namespace :CS5200 do
     locations = Location.all
     User.transaction do
       used_names = Set.new
-      while User.count < 1000 do
+      while User.count < 100 do
         random_first_name = Faker::Name.first_name
         random_last_name = Faker::Name.last_name
         random_location_id = locations.sample.id
@@ -36,9 +35,11 @@ namespace :CS5200 do
         next if used_names.include?(user_name)
         email = "#{user_name}@#{Faker::Internet.domain_name}"
 
-        User.create(location_id: random_location_id, user_name: user_name,
+        user = User.create(location_id: random_location_id, user_name: user_name,
                     first_name: random_first_name, last_name: random_last_name, email: email)
         used_names.add(user_name)
+
+
       end
     end
   end
