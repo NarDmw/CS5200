@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140722173604) do
+ActiveRecord::Schema.define(version: 20140722211814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,12 +27,16 @@ ActiveRecord::Schema.define(version: 20140722173604) do
   add_index "conversations", ["user_id"], name: "index_conversations_on_user_id", using: :btree
 
   create_table "feedback_messages", force: true do |t|
-    t.string   "contact_email"
-    t.string   "name"
-    t.string   "body"
+    t.integer  "User_id"
+    t.integer  "Posting_id"
+    t.string   "email",      limit: 45
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "feedback_messages", ["Posting_id"], name: "index_feedback_messages_on_Posting_id", using: :btree
+  add_index "feedback_messages", ["User_id"], name: "index_feedback_messages_on_User_id", using: :btree
 
   create_table "locations", force: true do |t|
     t.string "state", limit: 2

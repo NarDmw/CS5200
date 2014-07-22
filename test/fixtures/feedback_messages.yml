@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  contact_email: 
-  body: 
+  User_id: 
+  Posting_id: 
+  email: MyString
+  body: MyText
 
 two:
-  contact_email: 
-  body: 
+  User_id: 
+  Posting_id: 
+  email: MyString
+  body: MyText

@@ -1,1 +1,1 @@
-json.extract! @feedback_message, :id, :contact_email, :body, :created_at, :updated_at
+json.extract! @feedback_message, :id, :User_id, :Posting_id, :email, :body, :created_at, :updated_at

@@ -3,7 +3,9 @@
 <table>
   <thead>
     <tr>
-      <th>Contact email</th>
+      <th>User</th>
+      <th>Posting</th>
+      <th>Email</th>
       <th>Body</th>
       <th colspan="3"></th>
     </tr>
@@ -12,7 +14,9 @@
   <tbody>
     <% @feedback_messages.each do |feedback_message| %>
       <tr>
-        <td><%= feedback_message.contact_email %></td>
+        <td><%= feedback_message.User %></td>
+        <td><%= feedback_message.Posting %></td>
+        <td><%= feedback_message.email %></td>
         <td><%= feedback_message.body %></td>
         <td><%= link_to 'Show', feedback_message %></td>
         <td><%= link_to 'Edit', edit_feedback_message_path(feedback_message) %></td>

@@ -1,9 +1,10 @@
 class CreateFeedbackMessages < ActiveRecord::Migration
   def change
     create_table :feedback_messages do |t|
-      t.string :contact_email
-      t.string :name
-      t.string :body
+      t.references :User, index: true
+      t.references :Posting, index: true
+      t.string :email, limit: 45
+      t.text :body
 
       t.timestamps
     end
