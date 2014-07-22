@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140716205529) do
+ActiveRecord::Schema.define(version: 20140722211814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,18 @@ ActiveRecord::Schema.define(version: 20140716205529) do
 
   add_index "conversations", ["posting_id"], name: "index_conversations_on_posting_id", using: :btree
   add_index "conversations", ["user_id"], name: "index_conversations_on_user_id", using: :btree
+
+  create_table "feedback_messages", force: true do |t|
+    t.integer  "User_id"
+    t.integer  "Posting_id"
+    t.string   "email",      limit: 45
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "feedback_messages", ["Posting_id"], name: "index_feedback_messages_on_Posting_id", using: :btree
+  add_index "feedback_messages", ["User_id"], name: "index_feedback_messages_on_User_id", using: :btree
 
   create_table "locations", force: true do |t|
     t.string "state", limit: 2
@@ -55,7 +67,8 @@ ActiveRecord::Schema.define(version: 20140716205529) do
     t.integer  "user_id"
     t.integer  "skill_id"
     t.integer  "location_id"
-    t.string   "posting_body",  limit: 500
+    t.string   "header",        limit: 45
+    t.text     "body"
     t.boolean  "open_posting"
     t.boolean  "is_request"
     t.integer  "days_duration"
@@ -72,11 +85,11 @@ ActiveRecord::Schema.define(version: 20140716205529) do
   end
 
   create_table "skills", force: true do |t|
-    t.integer "SkillCategory_id"
-    t.string  "skill_name",       limit: 45
+    t.string   "category",   limit: 45
+    t.string   "name",       limit: 45
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
-
-  add_index "skills", ["SkillCategory_id"], name: "index_skills_on_SkillCategory_id", using: :btree
 
   create_table "skills_users", force: true do |t|
     t.integer "skill_id"

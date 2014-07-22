@@ -10,10 +10,11 @@ Rails.application.routes.draw do
   resources :locations_skills
   resources :messages
   resources :postings
-  resources :skills_categories
   resources :skills
   resources :skills_users
   resources :users
+  resources :feedback_messages
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
