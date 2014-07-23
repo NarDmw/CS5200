@@ -78,6 +78,8 @@ namespace :CS5200 do
   end
 
   def create_postings
+    puts 'Creating Postings'
+
     users = User.pluck(:id)
     skills = Skill.pluck(:id)
     locations = Location.pluck(:id)
