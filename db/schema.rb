@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140723221402) do
+ActiveRecord::Schema.define(version: 20140723231138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,15 +125,16 @@ ActiveRecord::Schema.define(version: 20140723221402) do
 
   create_table "users", force: true do |t|
     t.integer  "location_id"
-    t.string   "user_name",     limit: 45
-    t.string   "first_name",    limit: 45
-    t.string   "last_name",     limit: 45
-    t.string   "email",         limit: 45
-    t.integer  "score",                    default: 0
+    t.string   "user_name",       limit: 45
+    t.string   "first_name",      limit: 45
+    t.string   "last_name",       limit: 45
+    t.string   "email",           limit: 45
+    t.integer  "score",                      default: 0
     t.integer  "num_responses"
-    t.boolean  "is_admin",                 default: false
+    t.boolean  "is_admin",                   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_digest"
   end
 
   add_index "users", ["location_id"], name: "index_users_on_location_id", using: :btree

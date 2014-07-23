@@ -6,8 +6,8 @@ namespace :CS5200 do
     create_users unless User.any?
     map_skills_to_users unless UserSkill.any?
     create_postings unless Posting.any?
-    #close_possible_postings unless Conversation.any? && Message.any? && Review.any?
-    #TODO: avg rating, cumulative score, num_responses, userlogin, feedback messages
+    close_possible_postings unless Conversation.any? && Message.any? && Review.any?
+    #TODO: userlogin, feedback messages
   end
 
   def upload_locations
@@ -109,6 +109,11 @@ namespace :CS5200 do
     end
   end
 
+  #for all postings that have a valid user that can fulfill the posting,
+  #creates the conversation and messages that correspond to the posting,
+  #closes the posting
+  #adds a review to in regards to the posting
+  #updates the reviewee's account
   def close_possible_postings
     puts 'Creating Conversations and Messages'
 
