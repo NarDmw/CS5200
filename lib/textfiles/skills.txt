@@ -67,6 +67,7 @@ Sports Coaching	Lacrosse Training
 Sports Coaching	Ultimate Training
 Sports Coaching	Ice Skating Training
 Sports Coaching	Fitness Training
+Sports Coaching	Martial Arts
 Sports Coaching	Yoga Lessons
 Sports Coaching	Dance Lessons
 Tutoring	Math: Pre-Algebra
@@ -123,3 +124,29 @@ Skills	Web Programming
 Skills	Computer Repair
 Skills	Cellphone Repair
 Skills	Car Repair
+
+
+Skills  Filming
+Skills  Photography
+Skills  Debating
+Skills  Public Speaking
+Skills  Career Development
+Skills  Life Coaching
+Sports  Horseback Riding
+Skills  Modeling
+Skills  Event Planning
+Skills  Astronomy
+Skills  Comedic Entertainment
+Skills  Magic Entertainment
+Skills  Acrobatic Entertainment
+Skills  Falconry
+Skills  Bird Watching
+Skills  Disc Jockeying
+Skills  Knitting or Crocheting
+Skills  Pottery
+Skills  Woodworking
+Skills  Glass Blowing
+Skills  Makeup Applying
+Skills  Nail Painting
+
+
