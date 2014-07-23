@@ -9,5 +9,8 @@ class User < ActiveRecord::Base
   has_many :conversation_posts, class_name: :Conversation, foreign_key: :poster_id
   has_many :conversation_responses, class_name: :Conversation, foreign_key: :responder_id
 
+  has_many :messages_sent, class_name: :Message, foreign_key: :sender_id
+  has_many :messages_received, class_name: :Message, foreign_key: :recipient_id
+
   validates :email, :user_name, uniqueness: true
 end

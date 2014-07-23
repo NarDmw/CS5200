@@ -16,12 +16,16 @@
     <%= f.text_field :conversation_id %>
   </div>
   <div class="field">
-    <%= f.label :message_header %><br>
-    <%= f.text_field :message_header %>
+    <%= f.label :sender_id %><br>
+    <%= f.text_field :sender_id %>
   </div>
   <div class="field">
-    <%= f.label :message_body %><br>
-    <%= f.text_field :message_body %>
+    <%= f.label :recipient_id %><br>
+    <%= f.text_field :recipient_id %>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -7,7 +7,7 @@ namespace :CS5200 do
     map_skills_to_users unless UserSkill.any?
     create_postings unless Posting.any?
     create_conversations_and_messages unless Conversation.any?
-    #TODO: create conversations, messages for conversations, lock the posting down, reviews, and feedback messages
+    #TODO: lock the posting down, reviews, and feedback messages
   end
 
   def upload_locations
@@ -110,21 +110,34 @@ namespace :CS5200 do
   end
 
   def create_conversations_and_messages
+    puts 'Creating Conversations and Messages'
+
     Conversation.transaction do
+
       Posting.find_each do |posting|
         poster = posting.poster_id
 
         possible_responders = LocationsSkillsUsers.where(location_id: posting.location_id, skill_id: posting.skill_id).where.not(user_id: posting.poster_id).pluck(:user_id)
-        #one lucky person will respond
-        possible_responders.sample do |responder|
-          #create the conversation
-          conversation = Conversation.create(poster_id: poster, responder_id: responder, posting_id: posting.id)
-          #create the messages in that conversation
-          (1..rand(3..5)).each do
 
+        #one lucky person will respond
+        responder = possible_responders.sample
+
+        #create the conversation
+        conversation = Conversation.create(poster_id: poster, responder_id: responder, posting_id: posting.id)
+
+        #create the messages in that conversation
+        (1..rand(3..5)).each do |i|
+          if i.odd?
+            Message.create(conversation_id: conversation.id, sender_id: responder, recipient_id: poster, body: Faker::Lorem.paragraph)
+          else
+            Message.create(conversation_id: conversation.id, sender_id: poster, recipient_id: responder, body: Faker::Lorem.paragraph)
           end
         end
+
+        #assigns a responder to the posting and closes it
+        posting.updated(responder_id: responder, is_open: false)
       end
     end
   end
+
 end
