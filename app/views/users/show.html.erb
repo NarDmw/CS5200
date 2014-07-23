@@ -26,18 +26,18 @@
 </p>
 
 <p>
-  <strong>Prime user:</strong>
-  <%= @user.prime_user %>
+  <strong>Score:</strong>
+  <%= @user.score %>
+</p>
+
+<p>
+  <strong>Num responses:</strong>
+  <%= @user.num_responses %>
 </p>
 
 <p>
   <strong>Is admin:</strong>
   <%= @user.is_admin %>
-</p>
-
-<p>
-  <strong>Avg rating:</strong>
-  <%= @user.avg_rating %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

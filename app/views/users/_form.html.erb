@@ -32,16 +32,16 @@
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :prime_user %><br>
-    <%= f.check_box :prime_user %>
+    <%= f.label :score %><br>
+    <%= f.number_field :score %>
+  </div>
+  <div class="field">
+    <%= f.label :num_responses %><br>
+    <%= f.number_field :num_responses %>
   </div>
   <div class="field">
     <%= f.label :is_admin %><br>
     <%= f.check_box :is_admin %>
-  </div>
-  <div class="field">
-    <%= f.label :avg_rating %><br>
-    <%= f.text_field :avg_rating %>
   </div>
   <div class="actions">
     <%= f.submit %>

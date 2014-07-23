@@ -6,9 +6,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string :first_name, limit: 45
       t.string :last_name, limit: 45
       t.string :email, limit: 45
-      t.boolean :prime_user, default: false
+      t.integer :score, default: 0
+      t.integer :num_responses
       t.boolean :is_admin, default: false
-      t.float :avg_rating, default: 0.0
 
       t.timestamps
     end
