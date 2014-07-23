@@ -6,8 +6,8 @@ namespace :CS5200 do
     create_users unless User.any?
     map_skills_to_users unless UserSkill.any?
     create_postings unless Posting.any?
-    create_conversations_and_messages unless Conversation.any?
-    #TODO: lock the posting down, reviews, and feedback messages
+    close_possible_postings unless Conversation.any? && Message.any? && Review.any?
+    #TODO: avg rating, cumulative score, num_responses, userlogin, feedback messages
   end
 
   def upload_locations
@@ -109,7 +109,7 @@ namespace :CS5200 do
     end
   end
 
-  def create_conversations_and_messages
+  def close_possible_postings
     puts 'Creating Conversations and Messages'
 
     Conversation.transaction do
@@ -138,6 +138,7 @@ namespace :CS5200 do
         posting.update(responder_id: responder, open_posting: false)
 
         #creates a review
+        Review.create(reviewer_id: poster, reviewee_id: responder, posting_id: posting.id, body: Faker::Lorem.paragraph, rating: rand(1..5))
       end
     end
   end

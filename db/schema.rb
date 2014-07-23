@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140723211439) do
+ActiveRecord::Schema.define(version: 20140723221402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,20 @@ ActiveRecord::Schema.define(version: 20140723211439) do
   add_index "postings", ["poster_id"], name: "index_postings_on_poster_id", using: :btree
   add_index "postings", ["responder_id"], name: "index_postings_on_responder_id", using: :btree
   add_index "postings", ["skill_id"], name: "index_postings_on_skill_id", using: :btree
+
+  create_table "reviews", force: true do |t|
+    t.integer  "reviewer_id"
+    t.integer  "reviewee_id"
+    t.integer  "posting_id"
+    t.text     "body"
+    t.integer  "rating"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reviews", ["posting_id"], name: "index_reviews_on_posting_id", using: :btree
+  add_index "reviews", ["reviewee_id"], name: "index_reviews_on_reviewee_id", using: :btree
+  add_index "reviews", ["reviewer_id"], name: "index_reviews_on_reviewer_id", using: :btree
 
   create_table "skills", force: true do |t|
     t.string   "category",   limit: 45
