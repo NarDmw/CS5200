@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
-  <%= @posting.user %>
+  <strong>Poster:</strong>
+  <%= @posting.poster %>
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @posting.user %>
+  <strong>Responder:</strong>
+  <%= @posting.responder %>
 </p>
 
 <p>
@@ -20,11 +20,11 @@
   <%= @posting.location %>
 </p>
 
-
 <p>
-    <strong>Header:</strong>
-    <%= @posting.header %>
+  <strong>Header:</strong>
+  <%= @posting.header %>
 </p>
+
 <p>
   <strong>Body:</strong>
   <%= @posting.body %>
@@ -41,8 +41,8 @@
 </p>
 
 <p>
-  <strong>Days duration:</strong>
-  <%= @posting.days_duration %>
+  <strong>Duration:</strong>
+  <%= @posting.duration %>
 </p>
 
 <%= link_to 'Edit', edit_posting_path(@posting) %> |

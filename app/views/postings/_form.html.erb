@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
+    <%= f.label :poster_id %><br>
+    <%= f.text_field :poster_id %>
   </div>
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
+    <%= f.label :responder_id %><br>
+    <%= f.text_field :responder_id %>
   </div>
   <div class="field">
     <%= f.label :skill_id %><br>
@@ -27,13 +27,13 @@
     <%= f.label :location_id %><br>
     <%= f.text_field :location_id %>
   </div>
-<div class="field">
+  <div class="field">
     <%= f.label :header %><br>
     <%= f.text_field :header %>
-</div>
+  </div>
   <div class="field">
     <%= f.label :body %><br>
-    <%= f.text_field :body %>
+    <%= f.text_area :body %>
   </div>
   <div class="field">
     <%= f.label :open_posting %><br>
@@ -44,8 +44,8 @@
     <%= f.check_box :is_request %>
   </div>
   <div class="field">
-    <%= f.label :days_duration %><br>
-    <%= f.text_field :days_duration %>
+    <%= f.label :duration %><br>
+    <%= f.number_field :duration %>
   </div>
   <div class="actions">
     <%= f.submit %>

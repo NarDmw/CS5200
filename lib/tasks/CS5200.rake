@@ -5,6 +5,7 @@ namespace :CS5200 do
     upload_skills unless Skill.any?
     create_users unless User.any?
     map_skills_to_users unless UserSkill.any?
+    create_postings unless Posting.any?
   end
 
   def upload_locations
@@ -72,6 +73,26 @@ namespace :CS5200 do
           #giving that location a skill
           user.location.skills << random_skill
         end
+      end
+    end
+  end
+
+  def create_postings
+    users = User.pluck(:id)
+    skills = Skill.pluck(:id)
+    locations = Location.pluck(:id)
+
+    Posting.transaction do
+      (1..100).each do
+        posting_hash = {}
+        posting_hash[:poster_id] = users.sample
+        posting_hash[:skill_id] = skills.sample
+        posting_hash[:location_id] = locations.sample
+
+        posting_hash[:header] = Faker::Lorem.sentence
+        posting_hash[:body] = Faker::Lorem.paragraphs(rand(1..3)).join("\n")
+
+        Posting.create(posting_hash)
       end
     end
   end
