@@ -51,11 +51,9 @@ ActiveRecord::Schema.define(version: 20140723184852) do
   add_index "locations_skills", ["location_id", "skill_id"], name: "index_locations_skills_on_location_id_and_skill_id", using: :btree
 
   create_table "locations_skills_users", force: true do |t|
-    t.integer  "location_id"
-    t.integer  "skill_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer "location_id"
+    t.integer "skill_id"
+    t.integer "user_id"
   end
 
   add_index "locations_skills_users", ["location_id"], name: "index_locations_skills_users_on_location_id", using: :btree

@@ -6,7 +6,7 @@ namespace :CS5200 do
     create_users unless User.any?
     map_skills_to_users unless UserSkill.any?
     create_postings unless Posting.any?
-    create_conversations unless Conversation.any?
+    create_conversations_and_messages unless Conversation.any?
     #TODO: create conversations, messages for conversations, lock the posting down, reviews, and feedback messages
   end
 
@@ -109,14 +109,22 @@ namespace :CS5200 do
     end
   end
 
-  def create_conversations
-    users = User.pluck(:id)
-
+  def create_conversations_and_messages
     Conversation.transaction do
       Posting.find_each do |posting|
+        poster = posting.poster_id
 
+        possible_responders = LocationsSkillsUsers.where(location_id: posting.location_id, skill_id: posting.skill_id).where.not(user_id: posting.poster_id).pluck(:user_id)
+        #one lucky person will respond
+        possible_responders.sample do |responder|
+          #create the conversation
+          conversation = Conversation.create(poster_id: poster, responder_id: responder, posting_id: posting.id)
+          #create the messages in that conversation
+          (1..rand(3..5)).each do
+
+          end
+        end
       end
     end
   end
-
 end
