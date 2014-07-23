@@ -11,20 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140723175150) do
+ActiveRecord::Schema.define(version: 20140723184852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "conversations", force: true do |t|
-    t.integer  "user_id"
+    t.integer  "poster_id"
+    t.integer  "responder_id"
     t.integer  "posting_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "conversations", ["posting_id"], name: "index_conversations_on_posting_id", using: :btree
-  add_index "conversations", ["user_id"], name: "index_conversations_on_user_id", using: :btree
+  add_index "conversations", ["poster_id", "responder_id", "posting_id"], name: "conversation_idx", unique: true, using: :btree
 
   create_table "feedback_messages", force: true do |t|
     t.integer  "User_id"
@@ -49,6 +49,18 @@ ActiveRecord::Schema.define(version: 20140723175150) do
   end
 
   add_index "locations_skills", ["location_id", "skill_id"], name: "index_locations_skills_on_location_id_and_skill_id", using: :btree
+
+  create_table "locations_skills_users", force: true do |t|
+    t.integer  "location_id"
+    t.integer  "skill_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "locations_skills_users", ["location_id"], name: "index_locations_skills_users_on_location_id", using: :btree
+  add_index "locations_skills_users", ["skill_id"], name: "index_locations_skills_users_on_skill_id", using: :btree
+  add_index "locations_skills_users", ["user_id"], name: "index_locations_skills_users_on_user_id", using: :btree
 
   create_table "messages", force: true do |t|
     t.integer  "conversation_id"
