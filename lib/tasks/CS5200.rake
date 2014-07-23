@@ -4,6 +4,7 @@ namespace :CS5200 do
     upload_locations unless Location.any?
     upload_skills unless Skill.any?
     create_users unless User.any?
+    map_skills_to_users unless UserSkill.any?
   end
 
   def upload_locations
@@ -50,18 +51,27 @@ namespace :CS5200 do
         next if used_names.include?(user_name)
         email = "#{user_name}@#{Faker::Internet.domain_name}"
 
-        user = User.create(location_id: random_location, user_name: user_name,
+        User.create(location_id: random_location, user_name: user_name,
                     first_name: random_first_name, last_name: random_last_name, email: email)
         used_names.add(user_name)
+      end
+    end
+  end
 
+  def map_skills_to_users
+    skills = Skill.all
+    User.transaction do
+      User.find_each do |user|
         #generates a random number (between 1 and 5) of skills per person, and gives a random proficiency level
         max_num_skills = 5
         (1..rand(1..max_num_skills)).each do
           random_skill = skills.sample
           random_proficiency_level = rand(1..5)
           UserSkill.create(user_id: user.id, skill_id: random_skill, proficiency_level: random_proficiency_level)
-        end
 
+          #giving that location a skill
+          user.location.skills << random_skill
+        end
       end
     end
   end
