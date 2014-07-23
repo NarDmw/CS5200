@@ -135,7 +135,9 @@ namespace :CS5200 do
         end
 
         #assigns a responder to the posting and closes it
-        posting.updated(responder_id: responder, is_open: false)
+        posting.update(responder_id: responder, open_posting: false)
+
+        #creates a review
       end
     end
   end
