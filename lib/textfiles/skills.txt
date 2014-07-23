@@ -1,74 +1,76 @@
-Music Lessons	Bagpipe
-Music Lessons	Banjo
-Music Lessons	Bass drum
-Music Lessons	Bassoon
-Music Lessons	Bongo
-Music Lessons	Cello
-Music Lessons	Clarinet
-Music Lessons	Flute
-Music Lessons	Guitar
-Music Lessons	Harmonica
-Music Lessons	Harp
-Music Lessons	Harpsichord
-Music Lessons	Piano
-Music Lessons	Singing
-Music Lessons	Saxophone
-Music Lessons	Tambourine
-Music Lessons	Trombone
-Music Lessons	Trumpet
-Music Lessons	Tuba
-Music Lessons	Viola
-Music Lessons	Violin
-Foreign Language Lessons	French
-Foreign Language Lessons	Gaelic
-Foreign Language Lessons	Italian
-Foreign Language Lessons	English
-Foreign Language Lessons	German
-Foreign Language Lessons	Spanish
-Foreign Language Lessons	Dutch
-Foreign Language Lessons	Danish
-Foreign Language Lessons	Polish
-Foreign Language Lessons	Swedish
-Foreign Language Lessons	Finnish
-Foreign Language Lessons	Greek
-Foreign Language Lessons	Portuguese
-Foreign Language Lessons	American Sign Language
-Foreign Language Lessons	Latin
-Foreign Language Lessons	Hebrew
-Foreign Language Lessons	Yiddish
-Foreign Language Lessons	Czech
-Foreign Language Lessons	Romanian
-Foreign Language Lessons	Russian
-Foreign Language Lessons	Swahili
-Foreign Language Lessons	Twi
-Foreign Language Lessons	Turkish
-Foreign Language Lessons	Urdu
-Foreign Language Lessons	Arabic
-Foreign Language Lessons	Farsi
-Foreign Language Lessons	Hindi
-Foreign Language Lessons	Mandarin
-Foreign Language Lessons	Cantonese
-Foreign Language Lessons	Japanese
-Foreign Language Lessons	Korean
-Foreign Language Lessons	Cambodian
-Foreign Language Lessons    Vietnamese
-Sports Coaching	Football Training
-Sports Coaching	Basketball Training
-Sports Coaching	Cricket Training
-Sports Coaching	Baseball Training
-Sports Coaching	Tennis Training
-Sports Coaching	Volleyball Training
-Sports Coaching	Table Tennis Training
-Sports Coaching	Rugby Training
-Sports Coaching	Golf Training
-Sports Coaching	Soccer Training
-Sports Coaching	Hockey Training
-Sports Coaching	Lacrosse Training
-Sports Coaching	Ultimate Training
-Sports Coaching	Ice Skating Training
-Sports Coaching	Fitness Training
-Sports Coaching	Yoga Lessons
-Sports Coaching	Dance Lessons
+Music	Bagpipe
+Music	Banjo
+Music	Bass drum
+Music	Bassoon
+Music	Bongo
+Music	Cello
+Music	Clarinet
+Music	Flute
+Music	Guitar
+Music	Harmonica
+Music	Harp
+Music	Harpsichord
+Music	Piano
+Music	Singing
+Music	Saxophone
+Music	Tambourine
+Music	Trombone
+Music	Trumpet
+Music	Tuba
+Music	Viola
+Music	Violin
+Foreign Language	French
+Foreign Language	Gaelic
+Foreign Language	Italian
+Foreign Language	English
+Foreign Language	German
+Foreign Language	Spanish
+Foreign Language	Dutch
+Foreign Language	Danish
+Foreign Language	Polish
+Foreign Language	Swedish
+Foreign Language	Finnish
+Foreign Language	Greek
+Foreign Language	Portuguese
+Foreign Language	American Sign Language
+Foreign Language	Latin
+Foreign Language	Hebrew
+Foreign Language	Yiddish
+Foreign Language	Czech
+Foreign Language	Romanian
+Foreign Language	Russian
+Foreign Language	Swahili
+Foreign Language	Twi
+Foreign Language	Turkish
+Foreign Language	Urdu
+Foreign Language	Arabic
+Foreign Language	Farsi
+Foreign Language	Hindi
+Foreign Language	Mandarin
+Foreign Language	Cantonese
+Foreign Language	Japanese
+Foreign Language	Korean
+Foreign Language	Cambodian
+Foreign Language	Vietnamese
+Coaching	Football Training
+Coaching	Basketball Training
+Coaching	Cricket Training
+Coaching	Baseball Training
+Coaching	Tennis Training
+Coaching	Volleyball Training
+Coaching	Table Tennis Training
+Coaching	Rugby Training
+Coaching	Golf Training
+Coaching	Soccer Training
+Coaching	Hockey Training
+Coaching	Lacrosse Training
+Coaching	Ultimate Training
+Coaching	Ice Skating Training
+Coaching	Fitness Training
+Coaching	Martial Arts
+Coaching	Yoga Lessons
+Coaching	Dance Lessons
+Coaching	Horseback Riding Lessons
 Tutoring	Math: Pre-Algebra
 Tutoring	Math: Algebra
 Tutoring	Math: Geometry
@@ -117,9 +119,33 @@ Housework	Moving
 Housework	Driving
 Housework	Housecleaning
 Housework	Pet Sitting
-Skills	Massage
-Skills	Artwork
-Skills	Web Programming
-Skills	Computer Repair
-Skills	Cellphone Repair
-Skills	Car Repair
+Skill Development	Debating
+Skill Development	Public Speaking
+Skill Development	Astronomy
+Skill Development	Falconry
+Skill Development	Bird Watching
+Skill Development	Pottery
+Skill Development	Woodworking
+Skill Development	Glass Blowing
+Services	Massage
+Services	Artwork
+Services	Web Programming
+Services	Computer Repair
+Services	Cellphone Repair
+Services	Car Repair
+Services	Event Planning
+Services	Filming
+Services	Photography
+Services	Career Development
+Services	Life Coaching
+Services	Comedic Entertainment
+Services	Magic Entertainment
+Services	Acrobatic Entertainment
+Services	Modelling
+Services	Makeup Artistry
+Services	Knitting
+Services	Crocheting
+Services	Manicure
+Services	Pedicure
+Services	Bartending
+Services	Disc Jockeying
