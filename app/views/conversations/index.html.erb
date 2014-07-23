@@ -4,8 +4,8 @@
 
   <thead>
     <tr>
-      <th>User</th>
-      <th>User</th>
+      <th>Poster</th>
+      <th>Responder</th>
       <th>Posting</th>
       <th>Show</th>
       <th>Edit</th>
@@ -15,8 +15,8 @@
   <tbody>
     <% @conversations.each do |conversation| %>
       <tr>
-        <td><%= conversation.user %></td>
-        <td><%= conversation.user %></td>
+        <td><%= conversation.poster %></td>
+        <td><%= conversation.responder %></td>
         <td><%= conversation.posting %></td>
         <td><%= link_to 'Show', conversation %></td>
         <td><%= link_to 'Edit', edit_conversation_path(conversation) %></td>

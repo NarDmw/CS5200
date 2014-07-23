@@ -6,6 +6,8 @@ namespace :CS5200 do
     create_users unless User.any?
     map_skills_to_users unless UserSkill.any?
     create_postings unless Posting.any?
+
+    #TODO: create conversations, messages for conversations, lock the posting down, reviews, and feedback messages
   end
 
   def upload_locations
