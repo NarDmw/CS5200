@@ -99,8 +99,6 @@ namespace :CS5200 do
     end
   end
 
-
-
   def create_conversations
 
   end
