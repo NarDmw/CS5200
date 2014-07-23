@@ -6,7 +6,7 @@ namespace :CS5200 do
     create_users unless User.any?
     map_skills_to_users unless UserSkill.any?
     create_postings unless Posting.any?
-    close_possible_postings unless Conversation.any? && Message.any? && Review.any?
+    #close_possible_postings unless Conversation.any? && Message.any? && Review.any?
     #TODO: avg rating, cumulative score, num_responses, userlogin, feedback messages
   end
 
@@ -37,7 +37,7 @@ namespace :CS5200 do
   end
 
   def create_users
-    puts 'Creating Users and their Skills'
+    puts 'Creating Users'
 
     locations = Location.pluck(:id)
     skills = Skill.pluck(:id)
@@ -115,30 +115,34 @@ namespace :CS5200 do
     Conversation.transaction do
 
       Posting.find_each do |posting|
-        poster = posting.poster_id
+        poster_id = posting.poster_id
 
-        possible_responders = LocationsSkillsUsers.where(location_id: posting.location_id, skill_id: posting.skill_id).where.not(user_id: posting.poster_id).pluck(:user_id)
-
-        #one lucky person will respond
-        responder = possible_responders.sample
+        #one random person fitting the criteria will respond to the posting
+        responder = LocationsSkillsUsers.where(location_id: posting.location_id, skill_id: posting.skill_id).
+            where.not(user_id: posting.poster_id).sample
+        responder_id = responder_id.id
 
         #create the conversation
-        conversation = Conversation.create(poster_id: poster, responder_id: responder, posting_id: posting.id)
+        conversation = Conversation.create(poster_id: poster_id, responder_id: responder_id, posting_id: posting.id)
 
         #create the messages in that conversation
         (1..rand(3..5)).each do |i|
           if i.odd?
-            Message.create(conversation_id: conversation.id, sender_id: responder, recipient_id: poster, body: Faker::Lorem.paragraph)
+            Message.create(conversation_id: conversation.id, sender_id: responder_id, recipient_id: poster_id, body: Faker::Lorem.paragraph)
           else
-            Message.create(conversation_id: conversation.id, sender_id: poster, recipient_id: responder, body: Faker::Lorem.paragraph)
+            Message.create(conversation_id: conversation.id, sender_id: poster_id, recipient_id: responder_id, body: Faker::Lorem.paragraph)
           end
         end
 
         #assigns a responder to the posting and closes it
-        posting.update(responder_id: responder, open_posting: false)
+        posting.update(responder_id: responder_id, open_posting: false)
 
         #creates a review
-        Review.create(reviewer_id: poster, reviewee_id: responder, posting_id: posting.id, body: Faker::Lorem.paragraph, rating: rand(1..5))
+        random_rating = rand(1..5)
+        Review.create(reviewer_id: poster_id, reviewee_id: responder_id, posting_id: posting.id, body: Faker::Lorem.paragraph, rating: random_rating)
+
+        #updates the reviewee's status
+        responder.increment(:num_responses).increment(:score, random_rating).save
       end
     end
   end
