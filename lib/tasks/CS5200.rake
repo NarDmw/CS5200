@@ -13,15 +13,17 @@ namespace :CS5200 do
 
     end_time = Time.now
 
-    puts "Time elapsed is: #{(end_time - start_time).to_i} seconds"
-    #TODO: feedback messages as an extra, 10 tables already achieved
+    puts 'Time elapsed is: #{(end_time - start_time).to_i} seconds'
+    #TODO: discuss this with instructors
+    #TODO: change from WebBrick server to something else
     #TODO: possibly learn how to do bulk inserts
   end
 
+  #uploads all locations in the locations file
   def upload_locations
     puts 'Uploading Locations'
 
-    cities_file = 'lib/textfiles/cities.txt'
+    cities_file = 'lib/textfiles/locations.txt'
     Location.transaction do
       text = File.open(cities_file).read
       text.each_line do |line|
@@ -31,6 +33,7 @@ namespace :CS5200 do
     end
   end
 
+  #uploads all skills in the skills file
   def upload_skills
     puts 'Uploading Skills'
 
@@ -44,6 +47,7 @@ namespace :CS5200 do
     end
   end
 
+  #randomly generates a large number of users
   def create_users
     puts 'Creating Users'
 
@@ -69,6 +73,7 @@ namespace :CS5200 do
     end
   end
 
+  #randomly maps a random number of skills to each user
   def map_skills_to_users
     puts 'Giving Users a random set of Skills'
 
@@ -91,19 +96,21 @@ namespace :CS5200 do
     end
   end
 
+  #creates random postings
   def create_postings
     puts 'Creating Postings'
 
-    users = User.pluck(:id)
+    users_info = User.pluck(:id, :location_id)
     skills = Skill.pluck(:id)
-    locations = Location.pluck(:id)
 
     Posting.transaction do
       (1..2000).each do
+        random_user_info = users_info.sample
+
         posting_hash = {}
-        posting_hash[:poster_id] = users.sample
+        posting_hash[:poster_id] = random_user_info[0]
         posting_hash[:skill_id] = skills.sample
-        posting_hash[:location_id] = locations.sample
+        posting_hash[:location_id] = random_user_info[1]
 
         posting_hash[:header] = Faker::Lorem.sentence
         posting_hash[:body] = Faker::Lorem.paragraphs(rand(1..3)).join("\n")
@@ -162,8 +169,9 @@ namespace :CS5200 do
     end
   end
 
+  #creates random feedback messages for site admins
   def create_feedback_messages
-    puts 'Creating FeedbackMessagse for Site Admins'
+    puts 'Creating FeedbackMessages for Site Admins'
 
     FeedbackMessage.transaction do
       users = User.pluck(:id, :email)
