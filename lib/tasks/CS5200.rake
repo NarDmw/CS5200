@@ -76,7 +76,7 @@ namespace :CS5200 do
     User.transaction do
       User.find_each do |user|
         #generates a random number (between 1 and 3) of skills per person, and gives a random proficiency level
-        max_num_skills = 4
+        max_num_skills = 3
         user_skills = Set.new
         (1..rand(1..max_num_skills)).each do
           random_skill = skills.sample

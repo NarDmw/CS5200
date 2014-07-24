@@ -27,16 +27,16 @@ ActiveRecord::Schema.define(version: 20140723231138) do
   add_index "conversations", ["poster_id", "responder_id", "posting_id"], name: "conversation_idx", unique: true, using: :btree
 
   create_table "feedback_messages", force: true do |t|
-    t.integer  "User_id"
-    t.integer  "Posting_id"
+    t.integer  "user_id"
+    t.integer  "posting_id"
     t.string   "email",      limit: 45
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "feedback_messages", ["Posting_id"], name: "index_feedback_messages_on_Posting_id", using: :btree
-  add_index "feedback_messages", ["User_id"], name: "index_feedback_messages_on_User_id", using: :btree
+  add_index "feedback_messages", ["posting_id"], name: "index_feedback_messages_on_posting_id", using: :btree
+  add_index "feedback_messages", ["user_id"], name: "index_feedback_messages_on_user_id", using: :btree
 
   create_table "locations", force: true do |t|
     t.string "state", limit: 2
@@ -109,13 +109,13 @@ ActiveRecord::Schema.define(version: 20140723231138) do
 
   create_table "users", force: true do |t|
     t.integer  "location_id"
-    t.string   "user_name",       limit: 45
+    t.string   "user_name",       limit: 100
     t.string   "first_name",      limit: 45
     t.string   "last_name",       limit: 45
-    t.string   "email",           limit: 45
-    t.integer  "score",                      default: 0
-    t.integer  "num_responses",              default: 0
-    t.boolean  "is_admin",                   default: false
+    t.string   "email",           limit: 100
+    t.integer  "score",                       default: 0
+    t.integer  "num_responses",               default: 0
+    t.boolean  "is_admin",                    default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"
