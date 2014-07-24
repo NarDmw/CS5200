@@ -43,17 +43,11 @@ ActiveRecord::Schema.define(version: 20140723231138) do
     t.string "city",  limit: 50
   end
 
-  create_table "locations_skills", id: false, force: true do |t|
-    t.integer "location_id"
-    t.integer "skill_id"
-  end
-
-  add_index "locations_skills", ["location_id", "skill_id"], name: "index_locations_skills_on_location_id_and_skill_id", using: :btree
-
   create_table "locations_skills_users", force: true do |t|
     t.integer "location_id"
     t.integer "skill_id"
     t.integer "user_id"
+    t.integer "proficiency_level"
   end
 
   add_index "locations_skills_users", ["location_id"], name: "index_locations_skills_users_on_location_id", using: :btree
@@ -112,16 +106,6 @@ ActiveRecord::Schema.define(version: 20140723231138) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "user_skills", force: true do |t|
-    t.integer  "skill_id"
-    t.integer  "user_id"
-    t.integer  "proficiency_level"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "user_skills", ["skill_id", "user_id"], name: "index_user_skills_on_skill_id_and_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.integer  "location_id"

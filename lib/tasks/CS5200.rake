@@ -6,7 +6,7 @@ namespace :CS5200 do
     upload_locations unless Location.any?
     upload_skills unless Skill.any?
     create_users unless User.any?
-    map_skills_to_users unless UserSkill.any?
+    map_skills_to_users unless LocationsSkillsUsers.any?
     create_postings unless Posting.any?
     close_possible_postings unless Conversation.any? && Message.any? && Review.any?
 
@@ -14,7 +14,7 @@ namespace :CS5200 do
 
     puts "Time elapsed is: #{(end_time - start_time).to_i} seconds"
     #TODO: feedback messages as an extra, 10+ tables already achieved
-    #possibly learn how to do bulk inserts
+    #TODO: possibly learn how to do bulk inserts
   end
 
   def upload_locations
@@ -75,7 +75,7 @@ namespace :CS5200 do
     User.transaction do
       User.find_each do |user|
         #generates a random number (between 1 and 3) of skills per person, and gives a random proficiency level
-        max_num_skills = 3
+        max_num_skills = 2
         user_skills = Set.new
         (1..rand(1..max_num_skills)).each do
           random_skill = skills.sample
@@ -83,12 +83,8 @@ namespace :CS5200 do
 
 
           random_proficiency_level = rand(1..5)
-          UserSkill.create(user_id: user.id, skill_id: random_skill.id, proficiency_level: random_proficiency_level)
-
-          #giving that location a skill
-          user.location.skills << random_skill
-
-          LocationsSkillsUsers.create(location_id: user.location.id, skill_id: random_skill.id, user_id: user.id)
+          LocationsSkillsUsers.create(location_id: user.location.id, skill_id: random_skill.id, user_id: user.id,
+                                      proficiency_level: random_proficiency_level)
         end
       end
     end
