@@ -1,7 +1,7 @@
 namespace :CS5200 do
   desc 'Generates data for CS5200'
   task generate_data: :environment do
-    puts Time.now
+    start_time = Time.now
 
     upload_locations unless Location.any?
     upload_skills unless Skill.any?
@@ -10,8 +10,11 @@ namespace :CS5200 do
     create_postings unless Posting.any?
     close_possible_postings unless Conversation.any? && Message.any? && Review.any?
 
-    puts Time.now
-    #TODO: feedback messages
+    end_time = Time.now
+
+    puts "Time elapsed is: #{(end_time - start_time).to_i} seconds"
+    #TODO: feedback messages as an extra, 10+ tables already achieved
+    #possibly learn how to do bulk inserts
   end
 
   def upload_locations
@@ -71,8 +74,8 @@ namespace :CS5200 do
     skills = Skill.all
     User.transaction do
       User.find_each do |user|
-        #generates a random number (between 1 and 5) of skills per person, and gives a random proficiency level
-        max_num_skills = 5
+        #generates a random number (between 1 and 3) of skills per person, and gives a random proficiency level
+        max_num_skills = 3
         user_skills = Set.new
         (1..rand(1..max_num_skills)).each do
           random_skill = skills.sample
