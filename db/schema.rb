@@ -130,7 +130,7 @@ ActiveRecord::Schema.define(version: 20140723231138) do
     t.string   "last_name",       limit: 45
     t.string   "email",           limit: 45
     t.integer  "score",                      default: 0
-    t.integer  "num_responses"
+    t.integer  "num_responses",              default: 0
     t.boolean  "is_admin",                   default: false
     t.datetime "created_at"
     t.datetime "updated_at"

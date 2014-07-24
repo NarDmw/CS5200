@@ -1,13 +1,17 @@
 namespace :CS5200 do
   desc 'Generates data for CS5200'
   task generate_data: :environment do
+    puts Time.now
+
     upload_locations unless Location.any?
     upload_skills unless Skill.any?
     create_users unless User.any?
     map_skills_to_users unless UserSkill.any?
     create_postings unless Posting.any?
     close_possible_postings unless Conversation.any? && Message.any? && Review.any?
-    #TODO: userlogin, feedback messages
+
+    puts Time.now
+    #TODO: feedback messages
   end
 
   def upload_locations
@@ -24,7 +28,7 @@ namespace :CS5200 do
   end
 
   def upload_skills
-    puts 'Creating Skills'
+    puts 'Uploading Skills'
 
     skills_file = 'lib/textfiles/skills.txt'
     Skill.transaction do
@@ -40,11 +44,10 @@ namespace :CS5200 do
     puts 'Creating Users'
 
     locations = Location.pluck(:id)
-    skills = Skill.pluck(:id)
 
     User.transaction do
       used_names = Set.new
-      while User.count < 100 do
+      while User.count < 1000 do
         random_first_name = Faker::Name.first_name
         random_last_name = Faker::Name.last_name
         random_location = locations.sample
@@ -55,7 +58,8 @@ namespace :CS5200 do
         email = "#{user_name}@#{Faker::Internet.domain_name}"
 
         User.create(location_id: random_location, user_name: user_name,
-                    first_name: random_first_name, last_name: random_last_name, email: email)
+                    email: email, password: Faker::Internet.password,
+                    first_name: random_first_name, last_name: random_last_name)
         used_names.add(user_name)
       end
     end
@@ -95,7 +99,7 @@ namespace :CS5200 do
     locations = Location.pluck(:id)
 
     Posting.transaction do
-      (1..100).each do
+      (1..2000).each do
         posting_hash = {}
         posting_hash[:poster_id] = users.sample
         posting_hash[:skill_id] = skills.sample
@@ -115,40 +119,46 @@ namespace :CS5200 do
   #adds a review to in regards to the posting
   #updates the reviewee's account
   def close_possible_postings
-    puts 'Creating Conversations and Messages'
+    puts 'Creating Conversations, Messages, Reviews, and User updates'
 
     Conversation.transaction do
 
       Posting.find_each do |posting|
-        poster_id = posting.poster_id
+        poster = posting.poster_id
 
         #one random person fitting the criteria will respond to the posting
         responder = LocationsSkillsUsers.where(location_id: posting.location_id, skill_id: posting.skill_id).
             where.not(user_id: posting.poster_id).sample
-        responder_id = responder_id.id
+
+        #go to the next posting if there are no available responders
+        next if responder.nil?
+
+        responder = responder.user_id
 
         #create the conversation
-        conversation = Conversation.create(poster_id: poster_id, responder_id: responder_id, posting_id: posting.id)
+        conversation = Conversation.create(poster_id: poster, responder_id: responder, posting_id: posting.id)
 
         #create the messages in that conversation
         (1..rand(3..5)).each do |i|
           if i.odd?
-            Message.create(conversation_id: conversation.id, sender_id: responder_id, recipient_id: poster_id, body: Faker::Lorem.paragraph)
+            Message.create(conversation_id: conversation.id, sender_id: responder, recipient_id: poster, body: Faker::Lorem.paragraph)
           else
-            Message.create(conversation_id: conversation.id, sender_id: poster_id, recipient_id: responder_id, body: Faker::Lorem.paragraph)
+            Message.create(conversation_id: conversation.id, sender_id: poster, recipient_id: responder, body: Faker::Lorem.paragraph)
           end
         end
 
         #assigns a responder to the posting and closes it
-        posting.update(responder_id: responder_id, open_posting: false)
+        posting.update(responder_id: responder, open_posting: false)
 
         #creates a review
         random_rating = rand(1..5)
-        Review.create(reviewer_id: poster_id, reviewee_id: responder_id, posting_id: posting.id, body: Faker::Lorem.paragraph, rating: random_rating)
+        Review.create(reviewer_id: poster, reviewee_id: responder, posting_id: posting.id, body: Faker::Lorem.paragraph, rating: random_rating)
 
-        #updates the reviewee's status
-        responder.increment(:num_responses).increment(:score, random_rating).save
+        #updates the reviewee's status,
+        #by increasing the number of responses by 1, and the cumulative score by the rating assigned
+        User.find(responder).increment(:num_responses).increment(:score, random_rating).save
       end
+
     end
   end
 
