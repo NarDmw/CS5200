@@ -17,8 +17,8 @@
   <tbody>
     <% @feedback_messages.each do |feedback_message| %>
       <tr>
-        <td><%= feedback_message.User %></td>
-        <td><%= feedback_message.Posting %></td>
+        <td><%= feedback_message.user %></td>
+        <td><%= feedback_message.posting %></td>
         <td><%= feedback_message.email %></td>
         <td><%= feedback_message.body %></td>
         <td><%= link_to 'Show', feedback_message %></td>

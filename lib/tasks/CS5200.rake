@@ -9,11 +9,12 @@ namespace :CS5200 do
     map_skills_to_users unless LocationsSkillsUsers.any?
     create_postings unless Posting.any?
     close_possible_postings unless Conversation.any? && Message.any? && Review.any?
+    create_feedback_messages unless FeedbackMessage.any?
 
     end_time = Time.now
 
     puts "Time elapsed is: #{(end_time - start_time).to_i} seconds"
-    #TODO: feedback messages as an extra, 10+ tables already achieved
+    #TODO: feedback messages as an extra, 10 tables already achieved
     #TODO: possibly learn how to do bulk inserts
   end
 
@@ -75,7 +76,7 @@ namespace :CS5200 do
     User.transaction do
       User.find_each do |user|
         #generates a random number (between 1 and 3) of skills per person, and gives a random proficiency level
-        max_num_skills = 2
+        max_num_skills = 4
         user_skills = Set.new
         (1..rand(1..max_num_skills)).each do
           random_skill = skills.sample
@@ -158,6 +159,18 @@ namespace :CS5200 do
         User.find(responder).increment(:num_responses).increment(:score, random_rating).save
       end
 
+    end
+  end
+
+  def create_feedback_messages
+    puts 'Creating FeedbackMessagse for Site Admins'
+
+    FeedbackMessage.transaction do
+      users = User.pluck(:id, :email)
+      (1..100).each do
+        user_details = users.sample
+        FeedbackMessage.create(user_id: user_details[0], email: user_details[1], body: Faker::Lorem.paragraph)
+      end
     end
   end
 

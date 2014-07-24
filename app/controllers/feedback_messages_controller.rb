@@ -69,6 +69,6 @@ class FeedbackMessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def feedback_message_params
-      params.require(:feedback_message).permit(:User_id, :Posting_id, :email, :body)
+      params.require(:feedback_message).permit(:user_id, :posting_id, :email, :body)
     end
 end
