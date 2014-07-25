@@ -20,6 +20,10 @@
     <%= f.text_field :user_name %>
   </div>
   <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
     <%= f.label :first_name %><br>
     <%= f.text_field :first_name %>
   </div>
@@ -28,16 +32,20 @@
     <%= f.text_field :last_name %>
   </div>
   <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
     <%= f.label :score %><br>
     <%= f.number_field :score %>
   </div>
   <div class="field">
     <%= f.label :num_responses %><br>
     <%= f.number_field :num_responses %>
+  </div>
+  <div class="field">
+    <%= f.label :is_active %><br>
+    <%= f.check_box :is_active %>
+  </div>
+  <div class="field">
+    <%= f.label :is_available %><br>
+    <%= f.check_box :is_available %>
   </div>
   <div class="field">
     <%= f.label :is_admin %><br>
