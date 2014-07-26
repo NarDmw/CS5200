@@ -54,6 +54,9 @@ namespace :CS5200 do
     locations = Location.pluck(:id)
 
     User.transaction do
+      #creates the default known users
+      create_default_users
+
       used_names = Set.new
       while User.count < 1000 do
         random_first_name = Faker::Name.first_name
@@ -71,6 +74,24 @@ namespace :CS5200 do
         used_names.add(user_name)
       end
     end
+  end
+
+  def create_default_users
+    boston = Location.find_by_city('Boston').id
+    User.create(location_id: boston, user_name: 'admin', first_name: 'admin', last_name: 'istrator',
+                email: 'admin@email.com', score: 0, num_responses: 0, is_admin: true, password: 'CS5200')
+
+    User.create(location_id: boston, user_name: 'test1', first_name: 'test', last_name: 'one',
+                email: 'test_1@email.com', score: 0, num_responses: 0, password: 'CS5200')
+
+    User.create(location_id: boston, user_name: 'test2', first_name: 'test', last_name: 'two',
+                email: 'test_2@email.com', score: 10, num_responses: 2, password: 'CS5200')
+
+    User.create(location_id: boston, user_name: 'test3', first_name: 'test', last_name: 'three',
+                email: 'test_3@email.com', score: 20, num_responses: 4, password: 'CS5200')
+
+    User.create(location_id: boston, user_name: 'test4', first_name: 'test', last_name: 'four',
+                email: 'test_4@email.com', score: 30, num_responses: 6, password: 'CS5200')
   end
 
   #randomly maps a random number of skills to each user

@@ -115,10 +115,12 @@ ActiveRecord::Schema.define(version: 20140723231138) do
     t.string   "email",           limit: 100
     t.integer  "score",                       default: 0
     t.integer  "num_responses",               default: 0
+    t.boolean  "is_active",                   default: true
+    t.boolean  "is_available",                default: true
     t.boolean  "is_admin",                    default: false
+    t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "password_digest"
   end
 
   add_index "users", ["location_id"], name: "index_users_on_location_id", using: :btree
