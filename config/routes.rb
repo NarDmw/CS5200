@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+  root 'welcome#index'
 
   resources :users
 
@@ -22,7 +22,11 @@ Rails.application.routes.draw do
 
   resources :reviews
 
+  #get "demo/index"
   match ':controller(/:action(/:id))', :via => [:get, :post]
+
+  #no match
+  get '*path' => redirect('/')
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

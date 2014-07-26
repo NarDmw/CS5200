@@ -22,7 +22,7 @@ class AccessController < ApplicationController
       flash[:notice] = "Welcome #{session[:user_name]}!"
       redirect_to action: :index
     else
-      flash[:notice] = "Invalid username/password combination."
+      flash[:notice] = 'Invalid username/password combination'
       redirect_to :back
     end
 
@@ -31,7 +31,7 @@ class AccessController < ApplicationController
   def logout
     session[:user_id] = nil
     session[:user_name] = nil
-    flash[:notice] = 'Logged out.'
+    flash[:notice] = 'Logged out'
     redirect_to action: :login
   end
 
