@@ -21,6 +21,9 @@ pickle-email-*.html
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
 
+# heroku will ignore this anyways
+config/database.yml
+
 # ignore IntelliJ files
 *.iml
 /.idea
