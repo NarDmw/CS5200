@@ -5,6 +5,9 @@ class AccessController < ApplicationController
   end
 
   def login
+    if session[:user_id]
+      redirect_to action: :index
+    end
   end
 
   #attempts a user_login

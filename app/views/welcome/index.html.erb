@@ -1,4 +1,12 @@
 <p>
+    <% if session[:user_id] %>
+        <%= link_to 'Menu', controller: :access, action: :index %>
+    <% else %>
+        <%= link_to 'Login', controller: :access, action: :login %>
+    <% end %>
+</p>
+
+<p>
   The time is now: <%= Time.now %>
 </p>
 <p>

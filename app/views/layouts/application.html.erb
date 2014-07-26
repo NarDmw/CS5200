@@ -4,13 +4,16 @@
   <title>CS5200</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
 <%= render partial: 'layouts/title' %>
 
-<br>
+<% if session[:user_id] %>
+    <%= link_to 'Logout', controller: :access, action: :logout %>
+<% end %>
+
 
 <%= render partial: 'layouts/flash' %>
 
@@ -19,6 +22,5 @@
 <br>
 
 <%= render partial: 'layouts/footer' %>
-
 </body>
 </html>
