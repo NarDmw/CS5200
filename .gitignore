@@ -18,9 +18,6 @@ pickle-email-*.html
 # these should all be checked in to normalise the environment:
 # Gemfile.lock, .ruby-version, .ruby-gemset
 
-# secrets file
-config/secrets.yml
-
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
 
