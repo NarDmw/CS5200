@@ -4,6 +4,7 @@ class AccessController < ApplicationController
   def index
   end
 
+  #TODO fix
   def login
   end
 
@@ -20,7 +21,7 @@ class AccessController < ApplicationController
     if authorized_user
       session[:user_id] = authorized_user.id
       session[:user_name] = authorized_user.user_name
-      flash[:notice] = "Welcome #{found_user}.user_name!"
+      flash[:notice] = "Welcome #{session[:user_name]}!"
       redirect_to action: :login
     else
       flash[:notice] = "Invalid username/password combination."

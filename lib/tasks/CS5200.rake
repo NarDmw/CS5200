@@ -13,7 +13,7 @@ namespace :CS5200 do
 
     end_time = Time.now
 
-    puts 'Time elapsed is: #{(end_time - start_time).to_i} seconds'
+    puts "Time elapsed is: #{(end_time - start_time).to_i} seconds"
     #TODO: discuss this with instructors
     #TODO: change from WebBrick server to something else
     #TODO: possibly learn how to do bulk inserts
