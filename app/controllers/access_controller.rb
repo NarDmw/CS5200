@@ -4,13 +4,11 @@ class AccessController < ApplicationController
   def index
   end
 
-  #TODO fix
   def login
   end
 
   #attempts a user_login
   def attempt_login
-
     if params[:user_name].present? && params[:password].present?
       found_user = User.find_by(user_name: params[:user_name])
       if found_user
@@ -22,7 +20,7 @@ class AccessController < ApplicationController
       session[:user_id] = authorized_user.id
       session[:user_name] = authorized_user.user_name
       flash[:notice] = "Welcome #{session[:user_name]}!"
-      redirect_to action: :login
+      redirect_to action: :index
     else
       flash[:notice] = "Invalid username/password combination."
       redirect_to :back
