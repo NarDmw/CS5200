@@ -1,0 +1,13 @@
+<div class='menu'>
+    <h2>Menu</h2>
+    <div class='identity'>Logged in as:<%= %></div>
+
+    <ul>
+        <li><%= link_to 'users', users_path %></li>
+        <li><%= link_to 'locations', locations_path %></li>
+        <li><%= link_to 'postings', postings_path %></li>
+        <li><%= link_to 'reviews', reviews_path %></li>
+
+        <li><%= link_to 'Logout', action: :logout %></li>
+    </ul>
+</div>
