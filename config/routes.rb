@@ -6,7 +6,6 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
 
-=begin
   resources :users
 
   resources :conversations
@@ -22,7 +21,6 @@ Rails.application.routes.draw do
   resources :messages
 
   resources :reviews
-=end
 
   match ':controller(/:action(/:id))', :via => [:get, :post]
 
