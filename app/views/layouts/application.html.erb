@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CS5200</title>
+  <title>CS5200 Skills Trader</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= favicon_link_tag 'favicon.ico' %>
@@ -11,6 +11,7 @@
 <%= render partial: 'layouts/title' %>
 
 <% if session[:user_id] %>
+    <%= link_to 'Menu', controller: :access, action: :index %>
     <%= link_to 'Logout', controller: :access, action: :logout %>
 <% end %>
 

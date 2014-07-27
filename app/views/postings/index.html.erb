@@ -5,8 +5,10 @@
     <tr>
       <th>Poster</th>
       <th>Responder</th>
-      <th>Skill</th>
-      <th>Location</th>
+      <th>State</th>
+      <th>City</th>
+      <th>Skill Category</th>
+      <th>Skill Name</th>
       <th>Header</th>
       <th>Body</th>
       <th>Open posting</th>
@@ -21,10 +23,12 @@
   <tbody>
     <% @postings.each do |posting| %>
       <tr>
-        <td><%= posting.poster %></td>
-        <td><%= posting.responder %></td>
-        <td><%= posting.skill %></td>
-        <td><%= posting.location %></td>
+        <td><%= posting.poster.user_name %></td>
+        <td><%= posting.responder.user_name if posting.responder %></td>
+        <td><%= posting.location.state %></td>
+        <td><%= posting.location.city %></td>
+        <td><%= posting.skill.category %></td>
+        <td><%= posting.skill.name %></td>
         <td><%= posting.header %></td>
         <td><%= posting.body %></td>
         <td><%= posting.open_posting %></td>
