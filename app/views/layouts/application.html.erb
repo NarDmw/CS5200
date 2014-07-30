@@ -10,12 +10,6 @@
 <body>
 <%= render partial: 'layouts/title' %>
 
-<% if session[:user_id] %>
-    <%= link_to 'Menu', controller: :access, action: :index %>
-    <%= link_to 'Logout', controller: :access, action: :logout %>
-<% end %>
-
-
 <%= render partial: 'layouts/flash' %>
 
 <%= yield %>

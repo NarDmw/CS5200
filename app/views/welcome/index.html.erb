@@ -1,8 +1,41 @@
 <p>
+    <%= link_to 'Home', '/' %>
     <% if session[:user_id] %>
-        <%= link_to 'Menu', controller: :access, action: :index %>
+    <ul>
+        <li><%= link_to 'users', users_path %></li>
+        <li><%= link_to 'locations', locations_path %></li>
+        <li><%= link_to 'postings', postings_path %></li>
+        <li><%= link_to 'reviews', reviews_path %></li>
+        <li><%= link_to 'logout', controller: :access, action: :logout %></li>
+    </ul>
     <% else %>
-        <%= link_to 'Login', controller: :access, action: :login %>
+    <div class="login">
+        <%= form_tag(controller: :access, action: :attempt_login) do %>
+            <table>
+                <tr>
+                    <td><%= label_tag(:user_name) %></td>
+                    <td><%= text_field_tag(:user_name) %></td>
+                </tr>
+
+                <tr>
+                    <td><%= label_tag(:password) %></td>
+                    <td><%= password_field_tag(:password) %></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><%= submit_tag('Log In') %></td>
+                </tr>
+            </table>
+        <% end %>
+
+        <% if session[:user_name] %>
+            <ul>
+                <li>Logged in as: <%= session[:user_name] %></li>
+                <li><%= link_to("Logout", :action => 'logout') %></li>
+            </ul>
+
+        <% end %>
+    </div>
     <% end %>
 </p>
 

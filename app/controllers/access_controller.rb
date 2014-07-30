@@ -1,14 +1,5 @@
 class AccessController < ApplicationController
-  before_action :confirm_logged_in, except: [:login, :attempt_login, :logout]
-
-  def index
-  end
-
-  def login
-    if session[:user_id]
-      redirect_to action: :index
-    end
-  end
+  before_action :confirm_logged_in, except: [:attempt_login, :logout]
 
   #attempts a user_login
   def attempt_login
@@ -22,20 +13,21 @@ class AccessController < ApplicationController
     if authorized_user
       session[:user_id] = authorized_user.id
       session[:user_name] = authorized_user.user_name
+      session[:user_is_admin?] = authorized_user.is_admin
       flash[:notice] = "Welcome #{session[:user_name]}!"
-      redirect_to action: :index
     else
       flash[:notice] = 'Invalid username/password combination'
-      redirect_to :back
     end
+    redirect_to root_path
 
   end
 
   def logout
     session[:user_id] = nil
     session[:user_name] = nil
+    session[:user_is_admin?] = nil
     flash[:notice] = 'Logged out'
-    redirect_to action: :login
+    redirect_to root_path
   end
 
 end
