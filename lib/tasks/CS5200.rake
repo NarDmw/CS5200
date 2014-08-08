@@ -78,7 +78,7 @@ namespace :CS5200 do
 
   def create_default_users
     boston = Location.find_by_city('Boston').id
-    User.create(location_id: boston, user_name: 'admin', first_name: 'admin', last_name: 'istrator',
+    User.create(location_id: boston, user_name: 'admin', first_name: 'SYSTEM', last_name: 'ADMIN',
                 email: 'admin@email.com', score: 0, num_responses: 0, is_admin: true, password: 'CS5200')
 
     User.create(location_id: boston, user_name: 'test1', first_name: 'test', last_name: 'one',
@@ -92,6 +92,8 @@ namespace :CS5200 do
 
     User.create(location_id: boston, user_name: 'test4', first_name: 'test', last_name: 'four',
                 email: 'test_4@email.com', score: 30, num_responses: 6, password: 'CS5200')
+    User.create(location_id: boston, user_name: 'test5', first_name: 'test', last_name: 'five',
+                email: 'test_5@email.com', score: 40, num_responses: 8, password: 'CS5200')
   end
 
   #randomly maps a random number of skills to each user

@@ -1,49 +1,35 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Posting -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Poster:</strong>
-  <%= @posting.poster %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:poster_id) %>:</strong></dt>
+  <dd><%= @posting.poster_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:responder_id) %>:</strong></dt>
+  <dd><%= @posting.responder_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:skill_id) %>:</strong></dt>
+  <dd><%= @posting.skill_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:location_id) %>:</strong></dt>
+  <dd><%= @posting.location_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:header) %>:</strong></dt>
+  <dd><%= @posting.header %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:body) %>:</strong></dt>
+  <dd><%= @posting.body %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:open_posting) %>:</strong></dt>
+  <dd><%= @posting.open_posting %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:is_request) %>:</strong></dt>
+  <dd><%= @posting.is_request %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:duration) %>:</strong></dt>
+  <dd><%= @posting.duration %></dd>
+</dl>
 
-<p>
-  <strong>Responder:</strong>
-  <%= @posting.responder %>
-</p>
-
-<p>
-  <strong>Skill:</strong>
-  <%= @posting.skill %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @posting.location %>
-</p>
-
-<p>
-  <strong>Header:</strong>
-  <%= @posting.header %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @posting.body %>
-</p>
-
-<p>
-  <strong>Open posting:</strong>
-  <%= @posting.open_posting %>
-</p>
-
-<p>
-  <strong>Is request:</strong>
-  <%= @posting.is_request %>
-</p>
-
-<p>
-  <strong>Duration:</strong>
-  <%= @posting.duration %>
-</p>
-
-<%= link_to 'Edit', edit_posting_path(@posting) %> |
-<%= link_to 'Back', postings_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              postings_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_posting_path(@posting), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              posting_path(@posting),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

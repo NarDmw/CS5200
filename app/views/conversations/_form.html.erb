@@ -1,29 +1,26 @@
-<%= form_for(@conversation) do |f| %>
-  <% if @conversation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@conversation.errors.count, "error") %> prohibited this conversation from being saved:</h2>
-
-      <ul>
-      <% @conversation.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_for @conversation, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="form-group">
+    <%= f.label :poster_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :poster_id, :class => 'form-control' %>
     </div>
-  <% end %>
+  </div>
+  <div class="form-group">
+    <%= f.label :responder_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :responder_id, :class => 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :posting_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :posting_id, :class => 'form-control' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :posting_id %><br>
-    <%= f.text_field :posting_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            conversations_path, :class => 'btn btn-default' %>
+ 
 <% end %>

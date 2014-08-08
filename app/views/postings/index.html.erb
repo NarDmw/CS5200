@@ -1,47 +1,53 @@
-<h1>Listing postings</h1>
+<%- model_class = Posting -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped datatable">
 
-<table id="datatable" class="display" cellspacing="0" width="100%">
   <thead>
     <tr>
-      <th>Poster</th>
-      <th>Responder</th>
-      <th>State</th>
-      <th>City</th>
-      <th>Skill Category</th>
-      <th>Skill Name</th>
-      <th>Header</th>
-      <th>Body</th>
-      <th>Open posting</th>
-      <th>Is request</th>
-      <th>Duration</th>
-      <th>Show</th>
-      <th>Edit</th>
-      <th>Destroy</th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:poster_id) %></th>
+      <th><%= model_class.human_attribute_name(:responder_id) %></th>
+      <th><%= model_class.human_attribute_name(:skill_id) %></th>
+      <th><%= model_class.human_attribute_name(:location_id) %></th>
+      <th><%= model_class.human_attribute_name(:header) %></th>
+      <th><%= model_class.human_attribute_name(:body) %></th>
+      <th><%= model_class.human_attribute_name(:open_posting) %></th>
+      <th><%= model_class.human_attribute_name(:is_request) %></th>
+      <th><%= model_class.human_attribute_name(:duration) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @postings.each do |posting| %>
       <tr>
-        <td><%= posting.poster.user_name %></td>
-        <td><%= posting.responder.user_name if posting.responder %></td>
-        <td><%= posting.location.state %></td>
-        <td><%= posting.location.city %></td>
-        <td><%= posting.skill.category %></td>
-        <td><%= posting.skill.name %></td>
+        <td><%= link_to posting.id, posting_path(posting) %></td>
+        <td><%= posting.poster_id %></td>
+        <td><%= posting.responder_id %></td>
+        <td><%= posting.skill_id %></td>
+        <td><%= posting.location_id %></td>
         <td><%= posting.header %></td>
         <td><%= posting.body %></td>
         <td><%= posting.open_posting %></td>
         <td><%= posting.is_request %></td>
         <td><%= posting.duration %></td>
-        <td><%= link_to 'Show', posting %></td>
-        <td><%= link_to 'Edit', edit_posting_path(posting) %></td>
-        <td><%= link_to 'Destroy', posting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l posting.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_posting_path(posting), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      posting_path(posting),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Posting', new_posting_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_posting_path,
+            :class => 'btn btn-primary' %>

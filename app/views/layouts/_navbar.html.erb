@@ -13,16 +13,26 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="navbar-collapse collapse navbar-responsive-collapse">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav navbar-left">
                 <li class="active"><%= link_to "Home", '#' %></li>
                 <li><%= link_to "About", '#' %></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
                 <% if session[:user_id] %>
-                    <li>Welcome <%= session[:username] %></li>
+                    <li><p class='navbar-text'><%= session[:user_name] %></p></li>
+                    <li><%= button_to("LOGOUT", logout_path, {class: 'btn btn-default navbar-btn navbar-right'})%></li>
                 <% else %>
-                    <%= form_tag({controller: :access, action: :attempt_login}, {class: 'navbar-form navbar-right'}) do %>
-                        <%= text_field_tag('user_name', '', {placeholder: 'Username'}) %>
-                        <%= password_field_tag('password', '', {placeholder: 'Password'}) %>
-                        <%= submit_tag('Login', {class: 'btn'}) %>
+                        <li><%= link_to('Sign Up!', new_user_path) %></li>
+                    <%= form_tag(attempt_login_path, {class: 'navbar-form'}) do %>
+                        <li>
+                            <%= text_field_tag('user_name', '', {placeholder: 'Username'}) %>
+                        </li>
+                        <li>
+                            <%= password_field_tag('password', '', {placeholder: 'Password'}) %>
+                        </li>
+                        <li>
+                            <%= submit_tag('Login', {class: 'btn btn-default navbar-btn'}) %>
+                        </li>
                     <% end %>
                 <% end %>
             </ul>

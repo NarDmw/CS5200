@@ -1,24 +1,25 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = FeedbackMessage -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @feedback_message.user %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
+  <dd><%= @feedback_message.user_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:posting_id) %>:</strong></dt>
+  <dd><%= @feedback_message.posting_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+  <dd><%= @feedback_message.email %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:body) %>:</strong></dt>
+  <dd><%= @feedback_message.body %></dd>
+</dl>
 
-<p>
-  <strong>Posting:</strong>
-  <%= @feedback_message.posting %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @feedback_message.email %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @feedback_message.body %>
-</p>
-
-<%= link_to 'Edit', edit_feedback_message_path(@feedback_message) %> |
-<%= link_to 'Back', feedback_messages_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              feedback_messages_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_feedback_message_path(@feedback_message), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              feedback_message_path(@feedback_message),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

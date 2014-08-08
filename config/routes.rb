@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
+  #login/logout paths
+  post '/logout' => 'access#logout', as: 'logout'
+  post '/attempt_login' => 'access#attempt_login', as: 'attempt_login'
+
   resources :users
 
   resources :conversations
@@ -21,9 +25,6 @@ Rails.application.routes.draw do
   resources :messages
 
   resources :reviews
-
-  #get "demo/index"
-  match ':controller(/:action(/:id))', :via => [:get, :post]
 
   #no match
   get '*path' => redirect('/')

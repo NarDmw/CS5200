@@ -1,34 +1,43 @@
-<h1>Listing feedback_messages</h1>
-
-<table id="datatable" class="display" cellspacing="0" width="100%">
+<%- model_class = FeedbackMessage -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped datatable">
 
   <thead>
     <tr>
-      <th>User</th>
-      <th>Posting</th>
-      <th>Email</th>
-      <th>Body</th>
-      <th>Show</th>
-      <th>Edit</th>
-      <th>Destroy</th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:user_id) %></th>
+      <th><%= model_class.human_attribute_name(:posting_id) %></th>
+      <th><%= model_class.human_attribute_name(:email) %></th>
+      <th><%= model_class.human_attribute_name(:body) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @feedback_messages.each do |feedback_message| %>
       <tr>
-        <td><%= feedback_message.user %></td>
-        <td><%= feedback_message.posting %></td>
+        <td><%= link_to feedback_message.id, feedback_message_path(feedback_message) %></td>
+        <td><%= feedback_message.user_id %></td>
+        <td><%= feedback_message.posting_id %></td>
         <td><%= feedback_message.email %></td>
         <td><%= feedback_message.body %></td>
-        <td><%= link_to 'Show', feedback_message %></td>
-        <td><%= link_to 'Edit', edit_feedback_message_path(feedback_message) %></td>
-        <td><%= link_to 'Destroy', feedback_message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l feedback_message.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_feedback_message_path(feedback_message), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      feedback_message_path(feedback_message),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Feedback message', new_feedback_message_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_feedback_message_path,
+            :class => 'btn btn-primary' %>

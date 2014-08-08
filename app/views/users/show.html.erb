@@ -1,54 +1,39 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = User -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Location:</strong>
-  <%= @user.location %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:location_id) %>:</strong></dt>
+  <dd><%= @user.location_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:user_name) %>:</strong></dt>
+  <dd><%= @user.user_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:first_name) %>:</strong></dt>
+  <dd><%= @user.first_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:last_name) %>:</strong></dt>
+  <dd><%= @user.last_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+  <dd><%= @user.email %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:score) %>:</strong></dt>
+  <dd><%= @user.score %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:num_responses) %>:</strong></dt>
+  <dd><%= @user.num_responses %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:is_active) %>:</strong></dt>
+  <dd><%= @user.is_active %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:is_available) %>:</strong></dt>
+  <dd><%= @user.is_available %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:is_admin) %>:</strong></dt>
+  <dd><%= @user.is_admin %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:password_digest) %>:</strong></dt>
+  <dd><%= @user.password_digest %></dd>
+</dl>
 
-<p>
-  <strong>User name:</strong>
-  <%= @user.user_name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
-
-<p>
-  <strong>Score:</strong>
-  <%= @user.score %>
-</p>
-
-<p>
-  <strong>Num responses:</strong>
-  <%= @user.num_responses %>
-</p>
-
-<p>
-  <strong>Is active:</strong>
-  <%= @user.is_active %>
-</p>
-
-<p>
-  <strong>Is available:</strong>
-  <%= @user.is_available %>
-</p>
-
-<p>
-  <strong>Is admin:</strong>
-  <%= @user.is_admin %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              users_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_user_path(@user), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              user_path(@user),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

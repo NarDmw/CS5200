@@ -1,53 +1,62 @@
-<%= form_for(@posting) do |f| %>
-  <% if @posting.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@posting.errors.count, "error") %> prohibited this posting from being saved:</h2>
-
-      <ul>
-      <% @posting.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_for @posting, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="form-group">
+    <%= f.label :poster_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :poster_id, :class => 'form-control' %>
     </div>
-  <% end %>
+  </div>
+  <div class="form-group">
+    <%= f.label :responder_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :responder_id, :class => 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :skill_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :skill_id, :class => 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :location_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :location_id, :class => 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :header, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :header, :class => 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :body, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :body, :class => 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :open_posting, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :open_posting, :class => 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :is_request, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :is_request, :class => 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :duration, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :duration, :class => 'form-control' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :poster_id %><br>
-    <%= f.text_field :poster_id %>
-  </div>
-  <div class="field">
-    <%= f.label :responder_id %><br>
-    <%= f.text_field :responder_id %>
-  </div>
-  <div class="field">
-    <%= f.label :skill_id %><br>
-    <%= f.text_field :skill_id %>
-  </div>
-  <div class="field">
-    <%= f.label :location_id %><br>
-    <%= f.text_field :location_id %>
-  </div>
-  <div class="field">
-    <%= f.label :header %><br>
-    <%= f.text_field :header %>
-  </div>
-  <div class="field">
-    <%= f.label :body %><br>
-    <%= f.text_area :body %>
-  </div>
-  <div class="field">
-    <%= f.label :open_posting %><br>
-    <%= f.check_box :open_posting %>
-  </div>
-  <div class="field">
-    <%= f.label :is_request %><br>
-    <%= f.check_box :is_request %>
-  </div>
-  <div class="field">
-    <%= f.label :duration %><br>
-    <%= f.number_field :duration %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            postings_path, :class => 'btn btn-default' %>
+ 
 <% end %>
