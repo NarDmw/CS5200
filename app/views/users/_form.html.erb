@@ -29,6 +29,21 @@
       <%= f.text_field :email, :class => 'text_field form-control' %>
     </div>
   </div>
+
+    <div class="form-group">
+        <%= f.label :password, :class => 'control-label col-md-2' %>
+        <div class="col-md-10">
+            <%= f.password_field :password, :class => 'text_field form-control' %>
+        </div>
+    </div>
+    <div class="form-group">
+        <%= f.label :password_confirmation, :class => 'control-label col-md-2' %>
+        <div class="col-md-10">
+            <%= f.password_field :password_confirmation, :class => 'text_field form-control' %>
+        </div>
+    </div>
+
+  <% if false #session[:user_is_admin?] %>
   <div class="form-group">
     <%= f.label :score, :class => 'control-label col-md-2' %>
     <div class="col-md-10">
@@ -59,12 +74,8 @@
       <%= f.text_field :is_admin, :class => 'text_field form-control' %>
     </div>
   </div>
-  <div class="form-group">
-    <%= f.label :password_digest, :class => 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :password_digest, :class => 'text_field form-control' %>
-    </div>
-  </div>
+  <% end %>
+
 
   <div class="form-group">
     <div class='col-md-offset-2 col-md-10'>
