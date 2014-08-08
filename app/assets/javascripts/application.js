@@ -12,13 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-sprockets
 //= require dataTables/jquery.dataTables
 //= require turbolinks
 //= require_tree .
 
 $(
   function(){
-    dataTableInit();
+    //dataTableInit();
 });
 
 function dataTableInit(){
