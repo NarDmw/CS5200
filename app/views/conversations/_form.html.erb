@@ -1,26 +1,28 @@
 <%= form_for @conversation, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="form-group">
-    <%= f.label :poster_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :poster_id, :class => 'form-control' %>
+    <%= f.label :poster_id, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :poster_id, :class => 'text_field form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :responder_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :responder_id, :class => 'form-control' %>
+    <%= f.label :responder_id, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :responder_id, :class => 'text_field form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :posting_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :posting_id, :class => 'form-control' %>
+    <%= f.label :posting_id, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :posting_id, :class => 'text_field form-control' %>
     </div>
   </div>
 
-  
-  <%= f.submit nil, :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t('helpers.links.cancel')),
-            conversations_path, :class => 'btn btn-default' %>
- 
+  <div class="form-group">
+    <div class='col-md-offset-2 col-md-10'>
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  conversations_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
 <% end %>

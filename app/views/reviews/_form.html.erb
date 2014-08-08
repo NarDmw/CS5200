@@ -1,38 +1,40 @@
 <%= form_for @review, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="form-group">
-    <%= f.label :reviewer_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :reviewer_id, :class => 'form-control' %>
+    <%= f.label :reviewer_id, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :reviewer_id, :class => 'text_field form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :reviewee_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :reviewee_id, :class => 'form-control' %>
+    <%= f.label :reviewee_id, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :reviewee_id, :class => 'text_field form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :posting_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :posting_id, :class => 'form-control' %>
+    <%= f.label :posting_id, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :posting_id, :class => 'text_field form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :body, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :body, :class => 'form-control' %>
+    <%= f.label :body, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :body, :class => 'text_field form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :rating, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :rating, :class => 'form-control' %>
+    <%= f.label :rating, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :rating, :class => 'text_field form-control' %>
     </div>
   </div>
 
-  
-  <%= f.submit nil, :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t('helpers.links.cancel')),
-            reviews_path, :class => 'btn btn-default' %>
- 
+  <div class="form-group">
+    <div class='col-md-offset-2 col-md-10'>
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  reviews_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
 <% end %>

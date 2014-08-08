@@ -1,62 +1,64 @@
 <%= form_for @posting, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="form-group">
-    <%= f.label :poster_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :poster_id, :class => 'form-control' %>
+    <%= f.label :poster_id, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :poster_id, :class => 'text_field form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :responder_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :responder_id, :class => 'form-control' %>
+    <%= f.label :responder_id, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :responder_id, :class => 'text_field form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :skill_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :skill_id, :class => 'form-control' %>
+    <%= f.label :skill_id, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :skill_id, :class => 'text_field form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :location_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :location_id, :class => 'form-control' %>
+    <%= f.label :location_id, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :location_id, :class => 'text_field form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :header, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :header, :class => 'form-control' %>
+    <%= f.label :header, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :header, :class => 'text_field form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :body, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :body, :class => 'form-control' %>
+    <%= f.label :body, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :body, :class => 'text_field form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :open_posting, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :open_posting, :class => 'form-control' %>
+    <%= f.label :open_posting, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :open_posting, :class => 'text_field form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :is_request, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :is_request, :class => 'form-control' %>
+    <%= f.label :is_request, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :is_request, :class => 'text_field form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :duration, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :duration, :class => 'form-control' %>
+    <%= f.label :duration, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :duration, :class => 'text_field form-control' %>
     </div>
   </div>
 
-  
-  <%= f.submit nil, :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t('helpers.links.cancel')),
-            postings_path, :class => 'btn btn-default' %>
- 
+  <div class="form-group">
+    <div class='col-md-offset-2 col-md-10'>
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  postings_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
 <% end %>

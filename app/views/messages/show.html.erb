@@ -3,23 +3,27 @@
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:conversation_id) %>:</strong></dt>
-  <dd><%= @message.conversation_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:sender_id) %>:</strong></dt>
-  <dd><%= @message.sender_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:recipient_id) %>:</strong></dt>
-  <dd><%= @message.recipient_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:body) %>:</strong></dt>
-  <dd><%= @message.body %></dd>
-</dl>
+<div class="fieldset">
+  <dl>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:conversation_id) %></dt>
+      <dd><pre class="prettyprint"><%= @message.conversation_id %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:sender_id) %></dt>
+      <dd><pre class="prettyprint"><%= @message.sender_id %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:recipient_id) %></dt>
+      <dd><pre class="prettyprint"><%= @message.recipient_id %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:body) %></dt>
+      <dd><pre class="prettyprint"><%= @message.body %></pre></dd>
+  </dl>
+</div>
 
-<%= link_to t('.back', :default => t('helpers.links.back')),
+<div class="form-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
               messages_path, :class => 'btn btn-default'  %>
-<%= link_to t('.edit', :default => t('helpers.links.edit')),
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_message_path(@message), :class => 'btn btn-default' %>
-<%= link_to t('.destroy', :default => t('helpers.links.destroy')),
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               message_path(@message),
               :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t('helpers.links.confirm', :default => 'Are you sure?')) },
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
+</div>
