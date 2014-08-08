@@ -1,15 +1,25 @@
 namespace :CS5200 do
   desc 'Generates data for CS5200'
   task generate_data: :environment do
+
     start_time = Time.now
 
-    upload_locations unless Location.any?
-    upload_skills unless Skill.any?
-    create_users unless User.any?
-    map_skills_to_users unless LocationsSkillsUsers.any?
-    create_postings unless Posting.any?
-    close_possible_postings unless Conversation.any? && Message.any? && Review.any?
-    create_feedback_messages unless FeedbackMessage.any?
+    puts 'Cleaning out old data'
+    ENV['VERSION']= '0'
+    Rake::Task['db:migrate'].invoke
+    Rake::Task['db:migrate'].reenable
+    ENV.delete 'VERSION'
+    Rake::Task['db:migrate'].invoke
+
+    puts 'Done cleaning out old data'
+
+    upload_locations
+    upload_skills
+    create_users
+    map_skills_to_users
+    create_postings
+    close_possible_postings
+    create_feedback_messages
 
     end_time = Time.now
 
@@ -54,7 +64,7 @@ namespace :CS5200 do
     users = default_users
 
     used_names = Set.new
-    while users.count < 10 do
+    while users.count < 1000 do
       random_first_name = Faker::Name.first_name
       random_last_name = Faker::Name.last_name
       random_location = locations.sample
