@@ -1,0 +1,31 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">CS5200</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><%= link_to "Home", '#' %></li>
+                <li><%= link_to "About", '#' %></li>
+                <% if session[:user_id] %>
+                    <li>Welcome <%= session[:username] %></li>
+                <% else %>
+                    <%= form_tag({controller: :access, action: :attempt_login}, {class: 'navbar-form navbar-right'}) do %>
+                        <%= text_field_tag('user_name', '', {placeholder: 'Username'}) %>
+                        <%= password_field_tag('password', '', {placeholder: 'Password'}) %>
+                        <%= submit_tag('Login', {class: 'btn'}) %>
+                    <% end %>
+                <% end %>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div>
+</nav>
