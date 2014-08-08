@@ -1,4 +1,6 @@
 <%= form_for @review, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= render(partial: 'layouts/creation_errors', locals: {object: @review}) %>
+
   <div class="form-group">
     <%= f.label :reviewer_id, :class => 'control-label col-md-2' %>
     <div class="col-md-10">

@@ -1,4 +1,6 @@
 <%= form_for @posting, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= render(partial: 'layouts/creation_errors', locals: {object: @posting}) %>
+
   <div class="form-group">
     <%= f.label :poster_id, :class => 'control-label col-md-2' %>
     <div class="col-md-10">
