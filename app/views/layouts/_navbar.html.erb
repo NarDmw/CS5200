@@ -14,28 +14,32 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav navbar-left">
-                <li class="active"><%= link_to "Home", '#' %></li>
-                <li><%= link_to "About", '#' %></li>
+                <li class="active"><%= link_to 'Home', '/' %></li>
+                <li><%= link_to 'About', '#' %></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <% if session[:user_id] %>
+
+            <% if session[:user_id] %>
+                <ul class="nav navbar-nav navbar-right">
                     <li><p class='navbar-text'><%= session[:user_name] %></p></li>
-                    <li><%= button_to("LOGOUT", logout_path, {class: 'btn btn-default navbar-btn navbar-right'})%></li>
-                <% else %>
-                        <li><%= link_to('Sign Up!', new_user_path) %></li>
-                    <%= form_tag(attempt_login_path, {class: 'navbar-form'}) do %>
+                    <li><%= button_to('LOGOUT', logout_path, {class: 'btn btn-default navbar-btn navbar-right'})%></li>
+                </ul>
+            <% else %>
+                <div class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav">
                         <li>
-                            <%= text_field_tag('user_name', '', {placeholder: 'Username'}) %>
+                        <%= form_tag(attempt_login_path, {class: 'navbar-form navbar-right'}) do %>
+                            <%= text_field_tag('user_name', '', {class: 'form-control', placeholder: 'Username'}) %>
+                            <%= password_field_tag('password', '', {class: 'form-control', placeholder: 'Password'}) %>
+                            <%= submit_tag('Login', {class: 'btn btn-default'}) %>
+                        <% end %>
                         </li>
                         <li>
-                            <%= password_field_tag('password', '', {placeholder: 'Password'}) %>
+                            <p class='navbar-text'><%= link_to('Sign Up!', new_user_path) %></p>
                         </li>
-                        <li>
-                            <%= submit_tag('Login', {class: 'btn btn-default navbar-btn'}) %>
-                        </li>
-                    <% end %>
-                <% end %>
-            </ul>
+                    </ul>
+                </div>
+            <% end %>
+
         </div><!-- /.navbar-collapse -->
     </div>
 </nav>

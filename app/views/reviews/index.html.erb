@@ -13,7 +13,7 @@
       <th><%= model_class.human_attribute_name(:body) %></th>
       <th><%= model_class.human_attribute_name(:rating) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th><%=t '.actions', :default => t('helpers.actions') %></th>
     </tr>
   </thead>
   <tbody>
@@ -27,12 +27,12 @@
         <td><%= review.rating %></td>
         <td><%=l review.created_at %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+          <%= link_to t('.edit', :default => t('helpers.links.edit')),
                       edit_review_path(review), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+          <%= link_to t('.destroy', :default => t('helpers.links.destroy')),
                       review_path(review),
                       :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :data => { :confirm => t('.confirm', :default => t('helpers.links.confirm', :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
         </td>
       </tr>
@@ -40,6 +40,6 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<%= link_to t('.new', :default => t('helpers.links.new')),
             new_review_path,
             :class => 'btn btn-primary' %>

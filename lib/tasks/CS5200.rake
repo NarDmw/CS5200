@@ -14,9 +14,6 @@ namespace :CS5200 do
     end_time = Time.now
 
     puts "Time elapsed is: #{(end_time - start_time).to_i} seconds"
-    #TODO: discuss this with instructors
-    #TODO: change from WebBrick server to something else
-    #TODO: possibly learn how to do bulk inserts
   end
 
   #uploads all locations in the locations file
@@ -24,13 +21,13 @@ namespace :CS5200 do
     puts 'Uploading Locations'
 
     cities_file = 'lib/textfiles/locations.txt'
-    Location.transaction do
-      text = File.open(cities_file).read
-      text.each_line do |line|
-        tokens = line.split("\t").map(&:chomp)
-        Location.create(state: tokens[1], city: tokens[0])
-      end
+    locations = []
+    text = File.open(cities_file).read
+    text.each_line do |line|
+      tokens = line.split("\t").map(&:chomp)
+      locations << Location.new(state: tokens[1], city: tokens[0])
     end
+    Location.import(locations)
   end
 
   #uploads all skills in the skills file
@@ -38,13 +35,13 @@ namespace :CS5200 do
     puts 'Uploading Skills'
 
     skills_file = 'lib/textfiles/skills.txt'
-    Skill.transaction do
-      text = File.open(skills_file).read
-      text.each_line do |line|
-        tokens = line.split("\t").map(&:chomp)
-        Skill.create(category: tokens[0], name: tokens[1])
-      end
+    skills = []
+    text = File.open(skills_file).read
+    text.each_line do |line|
+      tokens = line.split("\t").map(&:chomp)
+      skills << Skill.new(category: tokens[0], name: tokens[1])
     end
+    Skill.import(skills)
   end
 
   #randomly generates a large number of users
@@ -53,47 +50,49 @@ namespace :CS5200 do
 
     locations = Location.pluck(:id)
 
-    User.transaction do
-      #creates the default known users
-      create_default_users
+    #creates the default known users
+    users = default_users
 
-      used_names = Set.new
-      while User.count < 1000 do
-        random_first_name = Faker::Name.first_name
-        random_last_name = Faker::Name.last_name
-        random_location = locations.sample
+    used_names = Set.new
+    while users.count < 10 do
+      random_first_name = Faker::Name.first_name
+      random_last_name = Faker::Name.last_name
+      random_location = locations.sample
 
-        user_name = Faker::Internet.user_name("#{random_first_name} #{random_last_name}")
-        #ensures that there are only unique names
-        next if used_names.include?(user_name)
-        email = "#{user_name}@#{Faker::Internet.domain_name}"
+      user_name = Faker::Internet.user_name("#{random_first_name} #{random_last_name}")
+      #ensures that there are only unique names
+      next if used_names.include?(user_name)
+      email = "#{user_name}@#{Faker::Internet.domain_name}"
 
-        User.create(location_id: random_location, user_name: user_name,
-                    email: email, password: Faker::Internet.password,
-                    first_name: random_first_name, last_name: random_last_name)
-        used_names.add(user_name)
-      end
+      users << User.new(location_id: random_location, user_name: user_name,
+                        email: email, password: Faker::Internet.password,
+                        first_name: random_first_name, last_name: random_last_name
+      )
+      used_names.add(user_name)
     end
+    User.import(users)
   end
 
-  def create_default_users
+  def default_users
+    default_users = []
     boston = Location.find_by_city('Boston').id
-    User.create(location_id: boston, user_name: 'admin', first_name: 'SYSTEM', last_name: 'ADMIN',
-                email: 'admin@email.com', score: 0, num_responses: 0, is_admin: true, password: 'CS5200')
+    default_users << User.new(location_id: boston, user_name: 'admin', first_name: 'SYSTEM', last_name: 'ADMIN',
+                              email: 'admin@email.com', score: 0, num_responses: 0, is_admin: true, password: 'CS5200')
 
-    User.create(location_id: boston, user_name: 'test1', first_name: 'test', last_name: 'one',
-                email: 'test_1@email.com', score: 0, num_responses: 0, password: 'CS5200')
+    default_users << User.new(location_id: boston, user_name: 'test1', first_name: 'test', last_name: 'one',
+                              email: 'test_1@email.com', score: 0, num_responses: 0, password: 'CS5200')
 
-    User.create(location_id: boston, user_name: 'test2', first_name: 'test', last_name: 'two',
-                email: 'test_2@email.com', score: 10, num_responses: 2, password: 'CS5200')
+    default_users << User.new(location_id: boston, user_name: 'test2', first_name: 'test', last_name: 'two',
+                              email: 'test_2@email.com', score: 10, num_responses: 2, password: 'CS5200')
 
-    User.create(location_id: boston, user_name: 'test3', first_name: 'test', last_name: 'three',
-                email: 'test_3@email.com', score: 20, num_responses: 4, password: 'CS5200')
+    default_users << User.new(location_id: boston, user_name: 'test3', first_name: 'test', last_name: 'three',
+                              email: 'test_3@email.com', score: 20, num_responses: 4, password: 'CS5200')
 
-    User.create(location_id: boston, user_name: 'test4', first_name: 'test', last_name: 'four',
-                email: 'test_4@email.com', score: 30, num_responses: 6, password: 'CS5200')
-    User.create(location_id: boston, user_name: 'test5', first_name: 'test', last_name: 'five',
-                email: 'test_5@email.com', score: 40, num_responses: 8, password: 'CS5200')
+    default_users << User.new(location_id: boston, user_name: 'test4', first_name: 'test', last_name: 'four',
+                              email: 'test_4@email.com', score: 30, num_responses: 6, password: 'CS5200')
+    default_users << User.new(location_id: boston, user_name: 'test5', first_name: 'test', last_name: 'five',
+                              email: 'test_5@email.com', score: 40, num_responses: 8, password: 'CS5200')
+    default_users
   end
 
   #randomly maps a random number of skills to each user
@@ -101,22 +100,22 @@ namespace :CS5200 do
     puts 'Giving Users a random set of Skills'
 
     skills = Skill.all
-    User.transaction do
-      User.find_each do |user|
-        #generates a random number (between 1 and 3) of skills per person, and gives a random proficiency level
-        max_num_skills = 3
-        user_skills = Set.new
-        (1..rand(1..max_num_skills)).each do
-          random_skill = skills.sample
-          user_skills.include?(random_skill) ? next : user_skills.add(random_skill)
+    locations_skills_users = []
+    User.find_each do |user|
+      #generates a random number (between 1 and 3) of skills per person, and gives a random proficiency level
+      max_num_skills = 3
+      user_skills = Set.new
+      (1..rand(1..max_num_skills)).each do
+        random_skill = skills.sample
+        user_skills.include?(random_skill) ? next : user_skills.add(random_skill)
 
 
-          random_proficiency_level = rand(1..5)
-          LocationsSkillsUsers.create(location_id: user.location.id, skill_id: random_skill.id, user_id: user.id,
-                                      proficiency_level: random_proficiency_level)
-        end
+        random_proficiency_level = rand(1..5)
+        locations_skills_users << LocationsSkillsUsers.new(location_id: user.location.id, skill_id: random_skill.id,
+                                                           user_id: user.id, proficiency_level: random_proficiency_level)
       end
     end
+    LocationsSkillsUsers.import(locations_skills_users)
   end
 
   #creates random postings
@@ -125,22 +124,22 @@ namespace :CS5200 do
 
     users_info = User.pluck(:id, :location_id)
     skills = Skill.pluck(:id)
+    postings = []
 
-    Posting.transaction do
-      (1..2000).each do
-        random_user_info = users_info.sample
+    (1..2000).each do
+      random_user_info = users_info.sample
 
-        posting_hash = {}
-        posting_hash[:poster_id] = random_user_info[0]
-        posting_hash[:skill_id] = skills.sample
-        posting_hash[:location_id] = random_user_info[1]
+      posting_hash = {}
+      posting_hash[:poster_id] = random_user_info[0]
+      posting_hash[:skill_id] = skills.sample
+      posting_hash[:location_id] = random_user_info[1]
 
-        posting_hash[:header] = Faker::Lorem.sentence
-        posting_hash[:body] = Faker::Lorem.paragraphs(rand(1..3)).join("\n")
+      posting_hash[:header] = Faker::Lorem.sentence
+      posting_hash[:body] = Faker::Lorem.paragraphs(rand(1..3)).join("\n")
 
-        Posting.create(posting_hash)
-      end
+      postings << Posting.new(posting_hash)
     end
+    Posting.import(postings)
   end
 
   #for all postings that have a valid user that can fulfill the posting,
@@ -196,13 +195,15 @@ namespace :CS5200 do
   def create_feedback_messages
     puts 'Creating FeedbackMessages for Site Admins'
 
-    FeedbackMessage.transaction do
-      users = User.pluck(:id, :email)
-      (1..100).each do
-        user_details = users.sample
-        FeedbackMessage.create(user_id: user_details[0], email: user_details[1], body: Faker::Lorem.paragraph)
-      end
+    feedback_messages = []
+
+    users = User.pluck(:id, :email)
+    (1..100).each do
+      user_details = users.sample
+      feedback_messages << FeedbackMessage.new(user_id: user_details[0], email: user_details[1], body: Faker::Lorem.paragraph)
     end
+
+    FeedbackMessage.import(feedback_messages)
   end
 
 end
