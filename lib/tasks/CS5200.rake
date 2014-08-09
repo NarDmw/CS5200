@@ -211,13 +211,21 @@ namespace :CS5200 do
 
     feedback_messages = []
 
-    users = User.pluck(:id, :email)
+    user_ids = User.pluck(:id)
     (1..100).each do
-      user_details = users.sample
-      user_random_posting_id = User.find(user_details[0]).posting_posts.sample.id
+      random_user_id = user_ids.sample
+      random_user = User.find(random_user_id)
 
-      feedback_messages << FeedbackMessage.new(user_id: user_details[0], posting_id: user_random_posting_id,
-                                               email: user_details[1], body: Faker::Lorem.paragraph)
+      random_posting = Posting.where("poster_id = #{random_user.id} OR responder_id = #{random_user.id}").sample
+
+      if random_posting.nil?
+        user_random_posting_id = nil
+      else
+        user_random_posting_id = random_posting.id
+      end
+
+      feedback_messages << FeedbackMessage.new(user_id: random_user.id, posting_id: user_random_posting_id,
+                                               email: random_user.email, body: Faker::Lorem.paragraph)
     end
 
     FeedbackMessage.import(feedback_messages)

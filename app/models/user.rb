@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
   has_many :messages_sent, class_name: :Message, foreign_key: :sender_id
   has_many :messages_received, class_name: :Message, foreign_key: :recipient_id
 
+  has_many :feedback_messages
+  has_many :reviews
+
   validates :first_name, :last_name, :user_name, :email, presence: true
   validates :email, :user_name, uniqueness: true
 
