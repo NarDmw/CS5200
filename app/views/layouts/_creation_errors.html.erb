@@ -3,7 +3,9 @@
         <button type="button" class="close" data-dismiss="alert">
             <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
         </button>
-        <h2><%= pluralize(object.errors.count, 'error') %> prohibited this <%= object.class.name %> from being saved:</h2>
+        <h2>
+            <%= pluralize(object.errors.count, 'error') %> prohibited this <%= object.class.name %> from being saved:
+        </h2>
 
         <ul>
             <% object.errors.full_messages.each do |message| %>

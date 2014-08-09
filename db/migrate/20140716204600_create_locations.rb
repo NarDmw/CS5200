@@ -3,6 +3,7 @@ class CreateLocations < ActiveRecord::Migration
     create_table :locations do |t|
       t.string :state, limit: 2
       t.string :city, limit: 50
+      t.timestamps
     end
   end
 end
