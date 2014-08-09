@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   belongs_to :location
+
   has_many :skills, through: :lsu
   has_many :lsu, class_name: :LocationsSkillsUsers, dependent: :destroy
 
@@ -15,12 +16,13 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :user_name, :email, presence: true
   validates :email, :user_name, uniqueness: true
 
-  validate :custom_validation
+  #TODO: remove before showing
+  #validate :custom_secret_validation
 
   has_secure_password
 
   private
-  def custom_validation
+  def custom_secret_validation
     unless user_name.start_with?('test') && password == 'CS5200'
       errors.add(:user_name, 'Custom Secret Validation: Only certain parameter combination allowed to prevent database spam')
     end

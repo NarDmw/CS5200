@@ -39,8 +39,10 @@ ActiveRecord::Schema.define(version: 20140723221402) do
   add_index "feedback_messages", ["user_id"], name: "index_feedback_messages_on_user_id", using: :btree
 
   create_table "locations", force: true do |t|
-    t.string "state", limit: 2
-    t.string "city",  limit: 50
+    t.string   "state",      limit: 2
+    t.string   "city",       limit: 50
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "locations_skills_users", force: true do |t|

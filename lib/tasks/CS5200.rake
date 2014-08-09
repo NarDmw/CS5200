@@ -74,10 +74,14 @@ namespace :CS5200 do
       next if used_names.include?(user_name)
       email = "#{user_name}@#{Faker::Internet.domain_name}"
 
-      users << User.new(location_id: random_location, user_name: user_name,
+
+      user = User.new(location_id: random_location, user_name: user_name,
                         email: email, password: Faker::Internet.password,
-                        first_name: random_first_name, last_name: random_last_name
-      )
+                        first_name: random_first_name, last_name: random_last_name)
+
+      next unless user.valid?
+
+      users << user
       used_names.add(user_name)
     end
     User.import(users)
@@ -210,7 +214,10 @@ namespace :CS5200 do
     users = User.pluck(:id, :email)
     (1..100).each do
       user_details = users.sample
-      feedback_messages << FeedbackMessage.new(user_id: user_details[0], email: user_details[1], body: Faker::Lorem.paragraph)
+      user_random_posting_id = User.find(user_details[0]).posting_posts.sample.id
+
+      feedback_messages << FeedbackMessage.new(user_id: user_details[0], posting_id: user_random_posting_id,
+                                               email: user_details[1], body: Faker::Lorem.paragraph)
     end
 
     FeedbackMessage.import(feedback_messages)
