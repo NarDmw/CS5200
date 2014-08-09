@@ -20,14 +20,23 @@ class User < ActiveRecord::Base
   validates :email, :user_name, uniqueness: true
 
   #TODO: remove before showing
-  #validate :custom_secret_validation
+  validate :custom_secret_validation
+  validate :valid_email
 
   has_secure_password
 
   private
   def custom_secret_validation
     unless user_name.start_with?('test') && password == 'CS5200'
-      errors.add(:user_name, 'Custom Secret Validation: Only certain parameter combination allowed to prevent database spam')
+      errors.add('Secret Validation:', 'Only certain parameter combination allowed to prevent database spam')
     end
   end
+
+  def valid_email
+    email_regex = %r{[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?}
+    unless email =~ email_regex
+      errors.add(:email, 'must be valid')
+    end
+  end
+
 end
