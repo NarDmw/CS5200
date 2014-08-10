@@ -14,6 +14,7 @@ gem 'autoprefixer-rails'
 
 # Use Autogenerator
 gem 'bootstrap-sass-extras'
+gem 'select2-rails'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
