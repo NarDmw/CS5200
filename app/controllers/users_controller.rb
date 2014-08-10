@@ -22,14 +22,6 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     gon.skills = LocationsSkillsUsers.where(user_id: params[:id]).pluck(:skill_id).sort
-    puts '######'
-    puts '######'
-    puts '######'
-    puts '######'
-    puts Time.now
-    puts '######'
-    puts '######'
-    puts '######'
   end
 
   # POST /users
