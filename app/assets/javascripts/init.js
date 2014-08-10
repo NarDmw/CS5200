@@ -6,7 +6,9 @@ $(
 
 function select2Init(){
     $('.select2').select2({
-        allowClear: true
+        placeholder: 'Select',
+        allowClear: true,
+        'width': 'resolve'
     });
 }
 
