@@ -6,8 +6,8 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:reviewer_id) %></th>
-      <th><%= model_class.human_attribute_name(:reviewee_id) %></th>
+      <th><%= model_class.human_attribute_name(:reviewer) %></th>
+      <th><%= model_class.human_attribute_name(:reviewee) %></th>
       <th><%= model_class.human_attribute_name(:posting_id) %></th>
       <th><%= model_class.human_attribute_name(:body) %></th>
       <th><%= model_class.human_attribute_name(:rating) %></th>
@@ -19,8 +19,8 @@
     <% @reviews.each do |review| %>
       <tr>
         <td><%= review.id %></td>
-          <td><%= review.reviewer_id %></td>
-          <td><%= review.reviewee_id %></td>
+          <td><%= review.reviewer %></td>
+          <td><%= review.reviewee %></td>
           <td><%= review.posting_id %></td>
           <td><%= review.body %></td>
           <td><%= review.rating %></td>

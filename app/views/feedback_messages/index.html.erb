@@ -18,7 +18,7 @@
     <% @feedback_messages.each do |feedback_message| %>
       <tr>
         <td><%= feedback_message.id %></td>
-          <td><%= feedback_message.user_id %></td>
+          <td><%= feedback_message.user %></td>
           <td><%= feedback_message.posting_id %></td>
           <td><%= feedback_message.email %></td>
           <td><%= feedback_message.body %></td>

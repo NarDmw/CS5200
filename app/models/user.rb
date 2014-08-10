@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  def to_s
+    user_name
+  end
+
   private
   def custom_secret_validation
     unless user_name.start_with?('test') && password == 'CS5200'
@@ -38,5 +42,4 @@ class User < ActiveRecord::Base
       errors.add(:email, 'must be valid')
     end
   end
-
 end

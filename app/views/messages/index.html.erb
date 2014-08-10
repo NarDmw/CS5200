@@ -19,8 +19,8 @@
       <tr>
         <td><%= message.id %></td>
           <td><%= message.conversation_id %></td>
-          <td><%= message.sender_id %></td>
-          <td><%= message.recipient_id %></td>
+          <td><%= message.sender %></td>
+          <td><%= message.recipient %></td>
           <td><%= message.body %></td>
         <td><%=l message.created_at, format: :long %></td>
         <td>

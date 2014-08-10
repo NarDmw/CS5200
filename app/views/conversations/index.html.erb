@@ -17,8 +17,8 @@
     <% @conversations.each do |conversation| %>
       <tr>
         <td><%= conversation.id %></td>
-          <td><%= conversation.poster_id %></td>
-          <td><%= conversation.responder_id %></td>
+          <td><%= conversation.poster %></td>
+          <td><%= conversation.responder %></td>
           <td><%= conversation.posting_id %></td>
         <td><%=l conversation.created_at, format: :long %></td>
         <td>
