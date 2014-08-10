@@ -16,12 +16,12 @@ class User < ActiveRecord::Base
   has_many :feedback_messages
   has_many :reviews
 
-  validates :location_id, :first_name, :last_name, :user_name, :email, presence: true
-  validates :email, :user_name, uniqueness: true
+  #validates :location_id, :first_name, :last_name, :user_name, :email, presence: true
+  #validates :email, :user_name, uniqueness: true
 
   #TODO: remove before showing
-  validate :custom_secret_validation
-  validate :valid_email
+  #validate :custom_secret_validation
+  #validate :valid_email
 
   has_secure_password
 

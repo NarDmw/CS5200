@@ -47,6 +47,15 @@
         </div>
     </div>
 
+    <div class="form-group">
+        <%= label_tag :user_skills, 'Skills', {:class => 'control-label col-md-2'} %>
+        <div class="col-md-10 select2Div">
+            <%= select_tag :skill_ids,
+                         options_for_select(Skill.all.collect{ |s| [s, s.id] }),
+                         {class: 'select2', multiple: true, include_blank: true} %>
+        </div>
+    </div>
+
   <% if false #session[:user_is_admin?] %>
   <div class="form-group">
     <%= f.label :score, :class => 'control-label col-md-2' %>

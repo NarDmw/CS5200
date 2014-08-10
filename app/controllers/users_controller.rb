@@ -29,6 +29,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        LocationsSkillsUsers.make(@user.id, @user.location_id, params[:skill_ids])
+
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
