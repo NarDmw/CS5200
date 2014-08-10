@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   #login/logout paths
   post '/logout' => 'access#logout', as: 'logout'
   post '/attempt_login' => 'access#attempt_login', as: 'attempt_login'
+  get '/signup' => 'users#new', as: 'signup'
 
   resources :users
 
