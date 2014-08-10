@@ -5,4 +5,7 @@ class Skill < ActiveRecord::Base
   has_many :users, through: :lsu
   has_many :locations, through: :lsu
 
+  def to_s
+    "#{category}: #{name}"
+  end
 end
