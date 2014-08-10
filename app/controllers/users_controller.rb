@@ -21,6 +21,15 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    gon.skills = LocationsSkillsUsers.where(user_id: params[:id]).pluck(:skill_id).sort
+    puts '######'
+    puts '######'
+    puts '######'
+    puts '######'
+    puts Time.now
+    puts '######'
+    puts '######'
+    puts '######'
   end
 
   # POST /users
@@ -30,7 +39,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        LocationsSkillsUsers.create(@user.id, @user.location_id, params[:skill_ids])
+        LocationsSkillsUsers.create(@user.id, @user.location_id, params[:skill_ids]) if params[:skill_ids]
 
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
@@ -46,6 +55,8 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
+        LocationsSkillsUsers.update(@user.id, @user.location_id, params[:skill_ids]) if params[:skill_ids]
+
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else

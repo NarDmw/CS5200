@@ -11,8 +11,13 @@ function select2Init(){
         //minimumInputLength: 2,
         'width': 'resolve'
     });
+
+
+    if(typeof gon != 'undefined' && typeof gon.skills != 'undefined'){
+        $('#selectSkills').select2('val', gon.skills);
+    }
 }
 
-function dataTableInit(){
+function dataTableInit() {
     $('.datatable').dataTable();
 }

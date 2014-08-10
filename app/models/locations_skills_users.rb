@@ -13,8 +13,8 @@ class LocationsSkillsUsers < ActiveRecord::Base
     LocationsSkillsUsers.import(lsu_array)
   end
 
-  def self.edit(user_id, location_id, skills_id)
-    #lazy, destroy all old ones
+  def self.update(user_id, location_id, skills_id)
+    #lazy, destroy all old ones, I know, this isn't optimized, but it's fast
     LocationsSkillsUsers.where(user_id: user_id).destroy_all
     #create them all again
     LocationsSkillsUsers.create(user_id, location_id, skills_id)
