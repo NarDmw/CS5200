@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :confirm_logged_in, except: [:new, :create]
+  before_action :redirect_if_logged_in, only: [:new, :create]
 
   # GET /users
   # GET /users.json
@@ -74,5 +75,12 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:location_id, :user_name, :email, :first_name, :last_name,
                                    :is_active, :is_available, :password, :password_confirmation)
+    end
+
+    def redirect_if_logged_in
+      unless session[:user_id] && session[:user_is_admin?]
+        flash[:notice] = 'Already Logged in!'
+        redirect_to root_path
+      end
     end
 end
