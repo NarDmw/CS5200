@@ -3,10 +3,6 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  root 'welcome#index'
-  #static pages served by high_voltage
-  get 'pages/:id' => 'high_voltage/pages#show'
   #login/logout paths
   post '/logout' => 'access#logout', as: 'logout'
   post '/attempt_login' => 'access#attempt_login', as: 'attempt_login'
@@ -27,9 +23,6 @@ Rails.application.routes.draw do
   resources :messages
 
   resources :reviews
-
-  #no match
-  get '*path' => redirect('/')
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
