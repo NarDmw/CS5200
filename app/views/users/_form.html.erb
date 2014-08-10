@@ -6,7 +6,7 @@
     <div class="col-md-10 select2Div">
         <%= f.select :location_id,
                      Location.all.collect{ |l| [l, l.id] },
-                     {include_blank: true}, {class: 'select2'} %>
+                     {include_blank: true}, {id: 'selectLocation', class: 'select2'} %>
     </div>
   </div>
   <div class="form-group">
@@ -60,7 +60,7 @@
                                      skill_hash
                                    }
                            ),
-                         {class: 'select2', multiple: true, include_blank: true} %>
+                         {id: 'selectSkills', class: 'select2', multiple: true, include_blank: true} %>
         </div>
     </div>
 
