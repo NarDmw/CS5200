@@ -3,4 +3,8 @@ class Location < ActiveRecord::Base
   has_many :skills, through: :lsu
   has_many :users, dependent: :destroy
   has_many :postings
+
+  def to_s
+    "#{city}, #{state}"
+  end
 end
