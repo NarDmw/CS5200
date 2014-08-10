@@ -27,14 +27,14 @@
                 <div class="nav navbar-nav navbar-right">
                     <ul class="nav navbar-nav">
                         <li>
+                            <p class='navbar-text'><%= link_to('Sign Up!', signup_path) %></p>
+                        </li>
+                        <li>
                         <%= form_tag(attempt_login_path, {class: 'navbar-form navbar-right'}) do %>
                             <%= text_field_tag('user_name', '', {class: 'form-control', placeholder: 'Username'}) %>
                             <%= password_field_tag('password', '', {class: 'form-control', placeholder: 'Password'}) %>
                             <%= submit_tag('Login', {class: 'btn btn-default'}) %>
                         <% end %>
-                        </li>
-                        <li>
-                            <p class='navbar-text'><%= link_to('Sign Up!', signup_path) %></p>
                         </li>
                     </ul>
                 </div>
