@@ -8,14 +8,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">CS5200</a>
+            <a class="navbar-brand" href="http://www.ccs.neu.edu/">Skill-Trader</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav navbar-left">
                 <li class="active"><%= link_to 'Home', '/' %></li>
-                <li><%= link_to 'About', '#' %></li>
+                <li><%= link_to 'About', page_path('about') %></li>
             </ul>
 
             <% if session[:user_id] %>

@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
-
+  #static pages served by high_voltage
+  get 'pages/:id' => 'high_voltage/pages#show'
   #login/logout paths
   post '/logout' => 'access#logout', as: 'logout'
   post '/attempt_login' => 'access#attempt_login', as: 'attempt_login'

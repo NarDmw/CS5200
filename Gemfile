@@ -37,7 +37,11 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
+# Allows setting of JavaScript variables through controllers
 gem 'gon'
+
+# Static Pages
+gem 'high_voltage'
 
 # fake data generator
 gem 'faker'
