@@ -78,7 +78,7 @@ class UsersController < ApplicationController
     end
 
     def redirect_if_logged_in
-      unless session[:user_id] && session[:user_is_admin?]
+      if session[:user_id].present? && !session[:user_is_admin?]
         flash[:notice] = 'Already Logged in!'
         redirect_to root_path
       end
