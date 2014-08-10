@@ -5,7 +5,10 @@ $(
     });
 
 function select2Init(){
-    $('.select2').select2();
+    $('.select2').select2({
+        placeholder: "Select",
+        allowClear: true
+    });
 }
 
 function dataTableInit(){

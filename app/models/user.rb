@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   has_many :feedback_messages
   has_many :reviews
 
-  validates :first_name, :last_name, :user_name, :email, presence: true
+  validates :location_id, :first_name, :last_name, :user_name, :email, presence: true
   validates :email, :user_name, uniqueness: true
 
   #TODO: remove before showing

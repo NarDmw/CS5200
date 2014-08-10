@@ -4,7 +4,9 @@
   <div class="form-group">
     <%= f.label :location_id, :class => 'control-label col-md-2' %>
     <div class="col-md-10">
-      <%= f.text_field :location_id, :class => 'text_field form-control' %>
+        <%= f.select :location_id,
+                     Location.all.collect{ |l| ["#{l.city}, #{l.state}", l.id] },
+                     {include_blank: true}, {class: 'select2'} %>
     </div>
   </div>
   <div class="form-group">
