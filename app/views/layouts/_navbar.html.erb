@@ -21,7 +21,7 @@
             <% if session[:user_id] %>
                 <ul class="nav navbar-nav navbar-right">
                     <li><p class='navbar-text'><%= session[:user_name] %></p></li>
-                    <li><%= button_to('LOGOUT', logout_path, {class: 'btn btn-default navbar-btn navbar-right'})%></li>
+                    <li><%= button_to('Logout', logout_path, {class: 'btn btn-default navbar-btn navbar-right'})%></li>
                 </ul>
             <% else %>
                 <div class="nav navbar-nav navbar-right">
@@ -34,7 +34,7 @@
                         <% end %>
                         </li>
                         <li>
-                            <p class='navbar-text'><%= link_to('Sign Up!', new_user_path) %></p>
+                            <p class='navbar-text'><%= link_to('Sign Up!', signup_path) %></p>
                         </li>
                     </ul>
                 </div>
