@@ -16,7 +16,6 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-    @locations_hash = Hash[Location.pluck(:id, :city, :state).map{ |elem| [elem[0], "#{elem[1]}, #{elem[2]}"] }]
   end
 
   # GET /users/1/edit
