@@ -8,6 +8,7 @@ function select2Init(){
     $('.select2').select2({
         placeholder: 'Select',
         allowClear: true,
+        //minimumInputLength: 2,
         'width': 'resolve'
     });
 }

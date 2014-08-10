@@ -51,7 +51,15 @@
         <%= label_tag :user_skills, 'Skills', {:class => 'control-label col-md-2'} %>
         <div class="col-md-10 select2Div">
             <%= select_tag :skill_ids,
-                         options_for_select(Skill.all.collect{ |s| [s, s.id] }),
+                           grouped_options_for_select(
+                                   Skill.all.inject({}) {
+                                           |skill_hash, s|
+                                     skill_hash[s.category] = skill_hash[s.category].present? ?
+                                             skill_hash[s.category] << [s.to_s, s.id] :
+                                             skill_hash[s.category] = [[s.to_s, s.id]];
+                                     skill_hash
+                                   }
+                           ),
                          {class: 'select2', multiple: true, include_blank: true} %>
         </div>
     </div>

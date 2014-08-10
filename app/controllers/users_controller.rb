@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        LocationsSkillsUsers.make(@user.id, @user.location_id, params[:skill_ids])
+        LocationsSkillsUsers.create(@user.id, @user.location_id, params[:skill_ids])
 
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
@@ -73,7 +73,6 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:location_id, :user_name, :email, :first_name, :last_name,
-                                   :score, :num_responses, :is_active, :is_available, :is_admin,
-                                   :password, :password_confirmation)
+                                   :is_active, :is_available, :password, :password_confirmation)
     end
 end
