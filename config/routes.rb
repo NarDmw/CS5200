@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post '/logout' => 'access#logout', as: 'logout'
   post '/attempt_login' => 'access#attempt_login', as: 'attempt_login'
   get '/signup' => 'users#new', as: 'signup'
+  get '/contact' => 'feedback_messages#new', as: 'contact'
 
   resources :users
 

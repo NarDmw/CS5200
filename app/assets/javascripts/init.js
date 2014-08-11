@@ -29,9 +29,25 @@ function sliderInit(){
     }
 }
 
+function highlightNavInit(){
+    var pathname = window.location.pathname;
+    switch (pathname) {
+        case '/':
+            $('#navHome').addClass('active');
+            break;
+        case '/about':
+            $('#navAbout').addClass('active');
+            break;
+        case '/contact':
+            $('#navContact').addClass('active');
+            break;
+    }
+}
+
 $(
     function(){
         dataTableInit();
         select2Init();
         sliderInit();
+        highlightNavInit();
     });

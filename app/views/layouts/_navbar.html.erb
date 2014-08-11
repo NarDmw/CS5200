@@ -14,17 +14,25 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav navbar-left">
-                <li class="active"><%= link_to 'Home', '/' %></li>
-                <li><%= link_to 'About', page_path('about') %></li>
-                <li><%= link_to 'Contact', new_feedback_message_path %></li>
+                <li id="navHome"><%= link_to 'Home', '/' %></li>
+                <li id="navAbout"><%= link_to 'About', page_path('about') %></li>
+                <li id="navContact"><%= link_to 'Contact', contact_path %></li>
                 <% if session[:user_id] %>
-                <li><%= link_to 'Postings', postings_path %></li>
+                <li id="navPostings"><%= link_to 'Postings', postings_path %></li>
                 <% end %>
             </ul>
 
             <% if session[:user_id] %>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><p class='navbar-text'><%= session[:user_name] %></p></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= session[:user_name] %><span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="<%= postings_path %>">My Postings</a></li>
+                            <li><a href="#">Messages</a></li>
+                            <li><a href="#">Reviews</a></li>
+                            <li class="divider"></li>
+                            <li><a href="<%= edit_user_path(session[:user_id]) %>">Edit Account</a></li>
+                        </ul>
                     <li><%= button_to('Logout', logout_path, {class: 'btn btn-default navbar-btn navbar-right'})%></li>
                 </ul>
             <% else %>

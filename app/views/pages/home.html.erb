@@ -1,9 +1,14 @@
-<p>
-    Attention: The time is now: <%= Time.now %>
-</p>
+<div>
+    <div class="page-header">
+        <h1>Home</h1>
+    </div>
 
-<% sql_query =
-           "SELECT
+    <p>
+        Attention: The time is now: <%= Time.now %>
+    </p>
+
+    <% sql_query =
+               "SELECT
             SUM(pgClass.reltuples) AS totalRowCount
             FROM
             pg_class pgClass
@@ -12,10 +17,11 @@
             WHERE
             pgNamespace.nspname NOT IN ('pg_catalog', 'information_schema') AND
             pgClass.relkind='r';"
-   num_records = ActiveRecord::Base.connection.execute(sql_query).first.first.last %>
+       num_records = ActiveRecord::Base.connection.execute(sql_query).first.first.last %>
 
-<p>
-    There are <strong><%= number_with_delimiter num_records %></strong> number of records currently in the database.
-    <br>
-    Heroku database limit is <strong>10,000</strong> records for hobby-dev Postgres databases.
-</p>
+    <p>
+        There are <strong><%= number_with_delimiter num_records %></strong> number of records currently in the database.
+        <br>
+        Heroku database limit is <strong>10,000</strong> records for hobby-dev Postgres databases.
+    </p>
+</div>
