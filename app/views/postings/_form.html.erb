@@ -1,66 +1,79 @@
 <%= form_for @posting, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= render(partial: 'layouts/creation_errors', locals: {object: @posting}) %>
+    <%= render(partial: 'layouts/creation_errors', locals: {object: @posting}) %>
 
-  <div class="form-group">
-    <%= f.label :poster_id, :class => 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :poster_id, :class => 'text_field form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :responder_id, :class => 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :responder_id, :class => 'text_field form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :skill_id, :class => 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :skill_id, :class => 'text_field form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :location_id, :class => 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :location_id, :class => 'text_field form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :header, :class => 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :header, :class => 'text_field form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :body, :class => 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :body, :class => 'text_field form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :open_posting, :class => 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :open_posting, :class => 'text_field form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :is_request, :class => 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :is_request, :class => 'text_field form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :duration, :class => 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :duration, :class => 'text_field form-control' %>
-    </div>
-  </div>
+    <% unless @posting.new_record? %>
+        <div class="form-group">
+            <%= f.label :responder_id, :class => 'control-label col-md-2' %>
+            <div class="col-md-10">
+                <%= f.text_field :responder_id, :class => 'text_field form-control' %>
+            </div>
+        </div>
+    <% end %>
 
-  <div class="form-group">
-    <div class='col-md-offset-2 col-md-10'>
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                  postings_path, :class => 'btn btn-default' %>
+
+    <div class="form-group">
+        <%= f.label :requested_skill_id, :class => 'control-label col-md-2' %>
+        <div class="col-md-10 select2Div">
+            <%= f.select :skill_id,
+                         grouped_options_for_select(
+                                 Skill.all.inject({}) {
+                                         |skill_hash, s|
+                                   skill_hash[s.category] = skill_hash[s.category].present? ?
+                                           skill_hash[s.category] << [s.to_s, s.id] :
+                                           skill_hash[s.category] = [[s.to_s, s.id]];
+                                   skill_hash
+                                 }
+                         ),
+                         {include_blank: true},
+                         {id: 'selectSkill', class: 'select2'} %>
+        </div>
     </div>
-  </div>
+
+
+    <div class="form-group">
+        <%= f.label :header, :class => 'control-label col-md-2' %>
+        <div class="col-md-10">
+            <%= f.text_field :header, :class => 'text_field form-control' %>
+        </div>
+    </div>
+    <div class="form-group">
+        <%= f.label :body, :class => 'control-label col-md-2' %>
+        <div class="col-md-10">
+            <%= f.text_area :body, :class => 'text-area form-control', rows: 6 %>
+        </div>
+    </div>
+
+    <% unless @posting.new_record? %>
+    <div class="form-group">
+        <%= f.label :open_posting, :class => 'control-label col-md-2' %>
+        <div class="col-md-10">
+            <%= f.text_field :open_posting, :class => 'text_field form-control' %>
+        </div>
+    </div>
+    <% end %>
+
+    <%# TODO Implement later %>
+    <% if false %>
+    <div class="form-group">
+        <%= f.label :requesting_or_offering, :class => 'control-label col-md-2' %>
+        <div class="col-md-10">
+            <%= f.radio_button :is_request, :class => 'text_field form-control' %>
+        </div>
+    </div>
+    <% end %>
+
+    <div class="form-group">
+        <%= f.label :days_duration, :class => 'control-label col-md-2' %>
+        <div class="col-md-10">
+            <%= f.text_field :duration, :class => 'slider' %>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class='col-md-offset-2 col-md-10'>
+            <%= f.submit nil, :class => 'btn btn-primary' %>
+            <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                        postings_path, :class => 'btn btn-default' %>
+        </div>
+    </div>
 <% end %>

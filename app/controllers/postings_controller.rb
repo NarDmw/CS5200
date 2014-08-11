@@ -27,6 +27,12 @@ class PostingsController < ApplicationController
   def create
     @posting = Posting.new(posting_params)
 
+    poster = User.find(session[:user_id])
+    @posting.poster_id = poster.id
+    @posting.location_id = poster.location_id
+    @posting.open_posting = true
+    @posting.is_request = true
+
     respond_to do |format|
       if @posting.save
         format.html { redirect_to @posting, notice: 'Posting was successfully created.' }
@@ -70,6 +76,6 @@ class PostingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def posting_params
-      params.require(:posting).permit(:poster_id, :responder_id, :skill_id, :location_id, :header, :body, :open_posting, :is_request, :duration)
+      params.require(:posting).permit(:responder_id, :skill_id, :header, :body, :open_posting, :is_request, :duration)
     end
 end

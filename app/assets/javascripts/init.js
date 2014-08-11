@@ -1,14 +1,12 @@
-$(
-    function(){
-        dataTableInit();
-        select2Init();
-    });
+function dataTableInit() {
+    $('.datatable').dataTable();
+}
 
 function select2Init(){
     $('.select2').select2({
         placeholder: 'Select',
         allowClear: true,
-        //minimumInputLength: 2,
+        minimumInputLength: 2,
         'width': 'resolve'
     });
 
@@ -18,6 +16,20 @@ function select2Init(){
     }
 }
 
-function dataTableInit() {
-    $('.datatable').dataTable();
+function sliderInit(){
+    var sliderElements = $('input.slider');
+    if(sliderElements.length > 0){
+        sliderElements.slider({
+            min: 1,
+            max: 14,
+            value: 7
+        });
+    }
 }
+
+$(
+    function(){
+        dataTableInit();
+        select2Init();
+        sliderInit();
+    });

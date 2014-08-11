@@ -12,9 +12,9 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 
-# Use Autogenerator
-gem 'bootstrap-sass-extras'
+
 gem 'select2-rails'
+gem 'bootstrap-slider-rails'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -46,9 +46,6 @@ gem 'high_voltage'
 # fake data generator
 gem 'faker'
 
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
-
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
@@ -60,6 +57,13 @@ gem 'unicorn'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+group :development do
+  # Use Autogenerator
+  gem 'bootstrap-sass-extras'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+end
 
 #heroku gem
 gem 'rails_12factor', group: :production
