@@ -1,6 +1,6 @@
 class FeedbackMessagesController < ApplicationController
   before_action :set_feedback_message, only: [:show, :edit, :update, :destroy]
-  before_action :confirm_logged_in, except: [:new, :create]
+  before_action lambda{ restrict_permissions(nil) }, except: [:new, :create]
 
   # GET /feedback_messages
   # GET /feedback_messages.json
