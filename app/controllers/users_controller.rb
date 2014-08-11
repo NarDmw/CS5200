@@ -31,6 +31,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        session[:user_skill_ids] = params[:skill_ids] unless session[:user_is_admin?]
         LocationsSkillsUsers.create(@user.id, @user.location_id, params[:skill_ids]) if params[:skill_ids]
 
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -47,6 +48,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
+        session[:user_skill_ids] = params[:skill_ids] unless session[:user_is_admin?]
         LocationsSkillsUsers.update(@user.id, @user.location_id, params[:skill_ids]) if params[:skill_ids]
 
         format.html { redirect_to @user, notice: 'User was successfully updated.' }

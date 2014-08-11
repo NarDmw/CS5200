@@ -5,7 +5,20 @@ class PostingsController < ApplicationController
   # GET /postings
   # GET /postings.json
   def index
-    @postings = Posting.all
+    @view_hashes = {}
+    @view_hashes[:skills] = hash_id_to_s(Skill.all)
+
+    #TODO ajax the loading
+    if session[:user_is_admin?]
+      @view_hashes[:location_name] = 'All'
+      @view_hashes[:locations] = hash_id_to_s(Location.all)
+      @view_hashes[:users] = hash_id_to_s(User.all)
+      @postings = Posting.all
+    else
+      @view_hashes[:location_name] = Location.find(session[:user_location_id]).to_s
+      @postings = Posting.where(location_id: session[:user_location_id], open_posting: true)
+    end
+
   end
 
   # GET /postings/1
@@ -27,9 +40,8 @@ class PostingsController < ApplicationController
   def create
     @posting = Posting.new(posting_params)
 
-    poster = User.find(session[:user_id])
-    @posting.poster_id = poster.id
-    @posting.location_id = poster.location_id
+    @posting.poster_id = session[:user_id]
+    @posting.location_id = session[:user_location_id]
     @posting.open_posting = true
     @posting.is_request = true
 

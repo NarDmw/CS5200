@@ -1,16 +1,6 @@
 <%= form_for @posting, :html => { :class => 'form-horizontal' } do |f| %>
     <%= render(partial: 'layouts/creation_errors', locals: {object: @posting}) %>
 
-    <% unless @posting.new_record? %>
-        <div class="form-group">
-            <%= f.label :responder_id, :class => 'control-label col-md-2' %>
-            <div class="col-md-10">
-                <%= f.text_field :responder_id, :class => 'text_field form-control' %>
-            </div>
-        </div>
-    <% end %>
-
-
     <div class="form-group">
         <%= f.label :requested_skill_id, :class => 'control-label col-md-2' %>
         <div class="col-md-10 select2Div">
@@ -44,12 +34,19 @@
     </div>
 
     <% unless @posting.new_record? %>
-    <div class="form-group">
-        <%= f.label :open_posting, :class => 'control-label col-md-2' %>
-        <div class="col-md-10">
-            <%= f.text_field :open_posting, :class => 'text_field form-control' %>
+        <div class="form-group">
+            <%= f.label :responder_id, :class => 'control-label col-md-2' %>
+            <div class="col-md-10">
+                <%= f.text_field :responder_id, :class => 'text_field form-control' %>
+            </div>
         </div>
-    </div>
+
+        <div class="form-group">
+            <%= f.label :open_posting, :class => 'control-label col-md-2' %>
+            <div class="col-md-10">
+                <%= f.text_field :open_posting, :class => 'text_field form-control' %>
+            </div>
+        </div>
     <% end %>
 
     <%# TODO Implement later %>
@@ -63,7 +60,7 @@
     <% end %>
 
     <div class="form-group">
-        <%= f.label :days_duration, :class => 'control-label col-md-2' %>
+        <%= f.label :posting_duration, :class => 'control-label col-md-2' %>
         <div class="col-md-10">
             <%= f.text_field :duration, :class => 'slider' %>
         </div>

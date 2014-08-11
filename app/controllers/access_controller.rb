@@ -14,6 +14,8 @@ class AccessController < ApplicationController
     if authorized_user
       session[:user_id] = authorized_user.id
       session[:user_name] = authorized_user.user_name
+      session[:user_location_id] = authorized_user.location.id
+      session[:user_skill_ids] = authorized_user.skills.pluck(:id)
       session[:user_is_admin?] = authorized_user.is_admin
       flash[:notice] = "Welcome #{session[:user_name]}!"
     else
@@ -25,6 +27,8 @@ class AccessController < ApplicationController
   def logout
     session[:user_id] = nil
     session[:user_name] = nil
+    session[:user_location_id] = nil
+    session[:user_skill_ids]
     session[:user_is_admin?] = nil
     flash[:notice] = 'Logged out'
     redirect_to root_path

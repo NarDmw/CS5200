@@ -28,4 +28,9 @@ class ApplicationController < ActionController::Base
       false
     end
   end
+
+  #hashes the activerecord_relation from ids to the element string
+  def hash_id_to_s(actrec_relation)
+    actrec_relation.inject({}){ |hash, elem| hash[elem.id]=elem.to_s; hash }
+  end
 end
