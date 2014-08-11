@@ -21,7 +21,10 @@ function sliderInit(){
         sliderElements.slider({
             min: 1,
             max: 14,
-            value: 7
+            value: 7,
+            formater: function(value) {
+                return 'Days Active: '+value;
+            }
         });
     }
 }
