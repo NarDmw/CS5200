@@ -5,12 +5,22 @@ class ApplicationController < ActionController::Base
 
   private
   def confirm_logged_in
-    unless session[:user_id]
+    if session[:user_id]
+      true
+    else
       flash[:notice] = 'Please log in.'
       redirect_to root_path
-      return false #halts the before_action
+      false #halts the before_action
+    end
+  end
+
+  def permit_only_admin
+    if session[:user_is_admin?]
+      true
     else
-      return true
+      flash[:error] = 'You do not have permission to do that.'
+      redirect_to root_path
+      false
     end
   end
 end

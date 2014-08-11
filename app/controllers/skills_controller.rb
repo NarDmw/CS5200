@@ -1,6 +1,7 @@
 class SkillsController < ApplicationController
   before_action :set_skill, only: [:show, :edit, :update, :destroy]
   before_action :confirm_logged_in
+  before_action :permit_only_admin, except: [:index]
 
   # GET /skills
   # GET /skills.json

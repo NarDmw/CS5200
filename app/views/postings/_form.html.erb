@@ -20,7 +20,7 @@
                                          |skill_hash, s|
                                    skill_hash[s.category] = skill_hash[s.category].present? ?
                                            skill_hash[s.category] << [s.to_s, s.id] :
-                                           skill_hash[s.category] = [[s.to_s, s.id]];
+                                           skill_hash[s.category] = [[s.to_s, s.id]]
                                    skill_hash
                                  }
                          ),
@@ -72,7 +72,7 @@
     <div class="form-group">
         <div class='col-md-offset-2 col-md-10'>
             <%= f.submit nil, :class => 'btn btn-primary' %>
-            <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            <%= link_to t('.cancel', :default => t('helpers.links.cancel')),
                         postings_path, :class => 'btn btn-default' %>
         </div>
     </div>

@@ -3,6 +3,7 @@ class AccessController < ApplicationController
 
   #attempts a user_login
   def attempt_login
+    authorized_user = nil
     if params[:user_name].present? && params[:password].present?
       found_user = User.find_by(user_name: params[:user_name])
       if found_user
