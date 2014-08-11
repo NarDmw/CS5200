@@ -19,7 +19,7 @@ class FeedbackMessagesController < ApplicationController
     if session[:user_id]
       @posting_references = Posting.
           where("poster_id = #{session[:user_id]} OR responder_id = #{session[:user_id]}").
-          pluck(:header, :id)
+          pluck(:header, :id).unshift(['None', nil])
     end
   end
 

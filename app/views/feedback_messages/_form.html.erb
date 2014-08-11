@@ -3,12 +3,12 @@
 
     <% if @posting_references %>
         <div class="form-group">
-            <%= f.label :reference_to_a_posting?, :class => 'control-label col-md-2' %>
+            <%= f.label :posting_reference, :class => 'control-label col-md-2' %>
             <div class="col-md-10 select2Div">
                 <%= f.select :posting_id,
                              options_for_select(@posting_references),
-                             {include_blank: true},
-                             {id: 'selectSkills', class: 'select2'} %>
+                             {},
+                             {id: 'selectPosting', class: 'select2'} %>
             </div>
         </div>
     <% end %>
