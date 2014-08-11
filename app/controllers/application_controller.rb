@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   private
+  #confirms the user is logged in
   def confirm_logged_in
     if session[:user_id]
       true
@@ -14,8 +15,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def permit_only_admin
-    if session[:user_is_admin?]
+  def restrict_permissions(user_id)
+    #checks to see if the user is logged in
+    confirm_logged_in
+
+    #checks to see if the user has permissions to view the current controller#action
+    if session[:user_id] == user_id  || session[:user_is_admin?]
       true
     else
       flash[:error] = 'You do not have permission to do that.'

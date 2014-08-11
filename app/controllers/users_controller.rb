@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :confirm_logged_in, except: [:new, :create]
   before_action :redirect_if_logged_in, only: [:new, :create]
+  before_action lambda{ restrict_permissions(@user.id) }, except: [:new, :create]
 
   # GET /users
   # GET /users.json
@@ -80,6 +80,7 @@ class UsersController < ApplicationController
                                    :is_active, :is_available, :password, :password_confirmation)
     end
 
+    #Users who are logged in do not need to create a new user, unless they are admins
     def redirect_if_logged_in
       if session[:user_id].present? && !session[:user_is_admin?]
         flash[:notice] = 'Already Logged in!'
