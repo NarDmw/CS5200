@@ -31,16 +31,27 @@ function sliderInit(){
 
 function highlightNavInit(){
     var pathname = window.location.pathname;
-    switch (pathname) {
-        case '/':
-            $('#navHome').addClass('active');
-            break;
-        case '/about':
-            $('#navAbout').addClass('active');
-            break;
-        case '/contact':
-            $('#navContact').addClass('active');
-            break;
+    var element;
+
+    if (pathname == '/') {
+        element = $('#navHome');
+    }else if (pathname == '/about') {
+        element = $('#navAbout');
+    }else if (pathname == '/contact') {
+        element = $('#navContact');
+    }else if (pathname == '/postings') {
+        if (location.search == '?my_posts=true') {
+            element = $('#navUser');
+        } else {
+            element = $('#navPostings');
+        }
+    }
+/*    else if (/users/.test(pathname)){
+        element = $('#navUser');
+    }*/
+
+    if(element != undefined){
+        element.addClass('active');
     }
 }
 

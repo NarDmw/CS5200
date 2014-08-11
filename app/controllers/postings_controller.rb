@@ -10,12 +10,15 @@ class PostingsController < ApplicationController
 
     #TODO ajax the loading
     if session[:user_is_admin?]
-      @view_hashes[:location_name] = 'All'
+      @view_hashes[:location_name] = 'All Postings'
       @view_hashes[:locations] = hash_id_to_s(Location.all)
       @view_hashes[:users] = hash_id_to_s(User.all)
-      @postings = Posting.all
+      @postings = Posting.limit(100)
+    elsif params[:my_posts]
+      @view_hashes[:location_name] = 'My Postings'
+      @postings = Posting.where(poster_id: session[:user_id])
     else
-      @view_hashes[:location_name] = Location.find(session[:user_location_id]).to_s
+      @view_hashes[:location_name] = "Postings for #{Location.find(session[:user_location_id]).to_s}"
       @postings = Posting.where(location_id: session[:user_location_id], open_posting: true)
     end
 
