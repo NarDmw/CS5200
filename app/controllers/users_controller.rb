@@ -50,7 +50,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update(user_params)
         unless session[:user_is_admin?]
-          session[:user_skill_ids] = params[:skill_ids]
+          session[:user_skill_ids] = params[:skill_ids].map{ |elem| elem.to_i }
           session[:user_email] = params[:user_email]
         end
         LocationsSkillsUsers.update(@user.id, @user.location_id, params[:skill_ids]) if params[:skill_ids]
