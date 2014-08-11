@@ -1,6 +1,7 @@
 class ConversationsController < ApplicationController
   before_action :set_conversation, only: [:show, :edit, :update, :destroy]
   before_action :confirm_logged_in
+  before_action lambda{ restrict_permissions(nil) }
 
   # GET /conversations
   # GET /conversations.json
