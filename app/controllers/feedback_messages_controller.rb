@@ -16,7 +16,11 @@ class FeedbackMessagesController < ApplicationController
   # GET /feedback_messages/new
   def new
     @feedback_message = FeedbackMessage.new
-    @user_email = User.find(session[:user_id]).email if session[:user_id]
+    if session[:user_id]
+      @posting_references = Posting.
+          where("poster_id = #{session[:user_id]} OR responder_id = #{session[:user_id]}").
+          pluck(:header, :id)
+    end
   end
 
   # GET /feedback_messages/1/edit
