@@ -1,5 +1,6 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
+  before_action :confirm_logged_in, except: [:show, :index]
   before_action lambda{ restrict_permissions(nil) }, except: [:index]
 
   # GET /locations

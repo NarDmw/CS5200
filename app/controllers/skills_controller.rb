@@ -1,5 +1,6 @@
 class SkillsController < ApplicationController
   before_action :set_skill, only: [:show, :edit, :update, :destroy]
+  before_action :confirm_logged_in, except: [:show, :index]
   before_action lambda{ restrict_permissions(nil) }, except: [:index]
 
   # GET /skills
