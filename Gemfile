@@ -12,7 +12,6 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 
-
 gem 'select2-rails'
 gem 'bootstrap-slider-rails'
 
