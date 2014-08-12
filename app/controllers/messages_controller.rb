@@ -1,11 +1,16 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
   before_action :confirm_logged_in
+  before_action lambda { restrict_permissions(@message.sender_id, @message.recipient_id) }, except: [:new, :create, :index]
 
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.all
+    if !session[:user_is_admin?] || params[:my_messages]
+      @messages = Message.where("sender_id = #{session[:user_id]} OR recipient_id = #{session[:user_id]}")
+    else
+      @messages = Message.all
+    end
   end
 
   # GET /messages/1
@@ -26,6 +31,9 @@ class MessagesController < ApplicationController
   # POST /messages.json
   def create
     @message = Message.new(message_params)
+    @message.sender_id = session[:user_id]
+    posting = Posting.find(params[:posting_id])
+    @message.recipient_id = posting.poster_id
 
     respond_to do |format|
       if @message.save
@@ -63,13 +71,13 @@ class MessagesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_message
-      @message = Message.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_message
+    @message = Message.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def message_params
-      params.require(:message).permit(:conversation_id, :sender_id, :recipient_id, :body)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def message_params
+    params.require(:message).permit(:conversation_id, :sender_id, :recipient_id, :body)
+  end
 end

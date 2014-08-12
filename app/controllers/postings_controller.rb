@@ -1,7 +1,8 @@
 class PostingsController < ApplicationController
   before_action :set_posting, only: [:show, :edit, :update, :destroy]
   before_action :confirm_logged_in
-  before_action lambda{ restrict_permissions(@posting.poster_id) }, except: [:new, :create, :show, :index]
+  before_action lambda{ restrict_permissions(@posting.poster_id, @posting.poster_id) },
+                except: [:new, :create, :show, :index]
 
   # GET /postings
   # GET /postings.json

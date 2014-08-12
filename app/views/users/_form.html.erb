@@ -1,51 +1,53 @@
 <%= form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= render(partial: 'layouts/creation_errors', locals: {object: @user}) %>
-
-  <div class="form-group">
-    <%= f.label :location_id, :class => 'control-label col-md-2' %>
-    <div class="col-md-10 select2Div">
-        <%= f.select :location_id,
-                     Location.all.collect{ |l| [l, l.id] },
-                     {include_blank: true}, {id: 'selectLocation', class: 'select2'} %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :user_name, :class => 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :user_name, :class => 'text_field form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :first_name, :class => 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :first_name, :class => 'text_field form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :last_name, :class => 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :last_name, :class => 'text_field form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :email, :class => 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :email, :class => 'text_field form-control' %>
-    </div>
-  </div>
+    <%= render(partial: 'layouts/creation_errors', locals: {object: @user}) %>
 
     <div class="form-group">
-        <%= f.label :password, :class => 'control-label col-md-2' %>
-        <div class="col-md-10">
-            <%= f.password_field :password, :class => 'text_field form-control' %>
+        <%= f.label :location_id, :class => 'control-label col-md-2' %>
+        <div class="col-md-10 select2Div">
+            <%= f.select :location_id,
+                         Location.all.collect{ |l| [l, l.id] },
+                         {include_blank: true}, {id: 'selectLocation', class: 'select2'} %>
         </div>
     </div>
     <div class="form-group">
-        <%= f.label :password_confirmation, :class => 'control-label col-md-2' %>
+        <%= f.label :user_name, :class => 'control-label col-md-2' %>
         <div class="col-md-10">
-            <%= f.password_field :password_confirmation, :class => 'text_field form-control' %>
+            <%= f.text_field :user_name, :class => 'text_field form-control' %>
         </div>
     </div>
+    <div class="form-group">
+        <%= f.label :first_name, :class => 'control-label col-md-2' %>
+        <div class="col-md-10">
+            <%= f.text_field :first_name, :class => 'text_field form-control' %>
+        </div>
+    </div>
+    <div class="form-group">
+        <%= f.label :last_name, :class => 'control-label col-md-2' %>
+        <div class="col-md-10">
+            <%= f.text_field :last_name, :class => 'text_field form-control' %>
+        </div>
+    </div>
+    <div class="form-group">
+        <%= f.label :email, :class => 'control-label col-md-2' %>
+        <div class="col-md-10">
+            <%= f.text_field :email, :class => 'text_field form-control' %>
+        </div>
+    </div>
+
+    <% if @user.new_record? %>
+        <div class="form-group">
+            <%= f.label :password, :class => 'control-label col-md-2' %>
+            <div class="col-md-10">
+                <%= f.password_field :password, :class => 'text_field form-control' %>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= f.label :password_confirmation, :class => 'control-label col-md-2' %>
+            <div class="col-md-10">
+                <%= f.password_field :password_confirmation, :class => 'text_field form-control' %>
+            </div>
+        </div>
+    <% end %>
 
     <div class="form-group">
         <%= label_tag :user_skills, 'Skills', {:class => 'control-label col-md-2'} %>
@@ -60,49 +62,49 @@
                                      skill_hash
                                    }
                            ),
-                         {id: 'selectSkills', class: 'select2', multiple: true, include_blank: true} %>
+                           {id: 'selectSkills', class: 'select2', multiple: true, include_blank: true} %>
         </div>
     </div>
 
-  <% if false #session[:user_is_admin?] %>
-  <div class="form-group">
-    <%= f.label :score, :class => 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :score, :class => 'text_field form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :num_responses, :class => 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :num_responses, :class => 'text_field form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :is_active, :class => 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :is_active, :class => 'text_field form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :is_available, :class => 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :is_available, :class => 'text_field form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :is_admin, :class => 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :is_admin, :class => 'text_field form-control' %>
-    </div>
-  </div>
-  <% end %>
+    <% if false #session[:user_is_admin?] %>
+        <div class="form-group">
+            <%= f.label :score, :class => 'control-label col-md-2' %>
+            <div class="col-md-10">
+                <%= f.text_field :score, :class => 'text_field form-control' %>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= f.label :num_responses, :class => 'control-label col-md-2' %>
+            <div class="col-md-10">
+                <%= f.text_field :num_responses, :class => 'text_field form-control' %>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= f.label :is_active, :class => 'control-label col-md-2' %>
+            <div class="col-md-10">
+                <%= f.text_field :is_active, :class => 'text_field form-control' %>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= f.label :is_available, :class => 'control-label col-md-2' %>
+            <div class="col-md-10">
+                <%= f.text_field :is_available, :class => 'text_field form-control' %>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= f.label :is_admin, :class => 'control-label col-md-2' %>
+            <div class="col-md-10">
+                <%= f.text_field :is_admin, :class => 'text_field form-control' %>
+            </div>
+        </div>
+    <% end %>
 
 
-  <div class="form-group">
-    <div class='col-md-offset-2 col-md-10'>
-      <%= f.submit 'Submit', :class => 'btn btn-primary' %>
-      <%= link_to t('.cancel', :default => t('helpers.links.cancel')),
-                  users_path, :class => 'btn btn-default' %>
+    <div class="form-group">
+        <div class='col-md-offset-2 col-md-10'>
+            <%= f.submit 'Submit', :class => 'btn btn-primary' %>
+            <%= link_to t('.cancel', :default => t('helpers.links.cancel')),
+                        users_path, :class => 'btn btn-default' %>
+        </div>
     </div>
-  </div>
 <% end %>

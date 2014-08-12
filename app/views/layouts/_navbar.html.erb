@@ -37,8 +37,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= session[:user_name] %><span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="<%= postings_path({my_posts: true}) %>">My Postings</a></li>
-                            <li><a href="#">Messages</a></li>
-                            <li><a href="#">Reviews</a></li>
+                            <li><a href="<%= messages_path(my_messages: true) %>">My Messages</a></li>
+                            <li><a href="<%= reviews_path(my_reviews: true) %>">Reviews</a></li>
                             <li class="divider"></li>
                             <li><a href="<%= edit_user_path(session[:user_id]) %>">Edit Account</a></li>
                         </ul>

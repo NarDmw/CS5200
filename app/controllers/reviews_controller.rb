@@ -1,12 +1,16 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
   before_action :confirm_logged_in
-  before_action :admin_only, only: [:index]
+  before_action lambda { restrict_permissions(@review.reviewer_id, @review.reviewer_id) }, except: [:new, :create, :index]
 
   # GET /reviews
   # GET /reviews.json
   def index
-    @reviews = Review.all
+    if !session[:user_is_admin?] || params[:my_reviews]
+      @reviews = Review.where("reviewer_id = #{session[:user_id]} OR reviewee_id = #{session[:user_id]}")
+    else
+      @Review = Review.all
+    end
   end
 
   # GET /reviews/1

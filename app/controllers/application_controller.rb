@@ -25,9 +25,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def restrict_permissions(user_id)
+  def restrict_permissions(user1_id, user2_id)
     #checks to see if the user has permissions to view the current controller#action
-    if session[:user_id] == user_id  || session[:user_is_admin?]
+    if session[:user_id] == user1_id  || session[:user_id] == user2_id || session[:user_is_admin?]
       true
     else
       flash[:error] = 'You do not have permission to do that.'
