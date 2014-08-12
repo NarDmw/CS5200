@@ -34,20 +34,19 @@
         </div>
     </div>
 
-    <% if @user.new_record? %>
-        <div class="form-group">
-            <%= f.label :password, :class => 'control-label col-md-2' %>
-            <div class="col-md-10">
-                <%= f.password_field :password, :class => 'text_field form-control' %>
-            </div>
+    <div class="form-group">
+        <%= f.label :password, :class => 'control-label col-md-2' %>
+        <div class="col-md-10">
+            <%= f.password_field :password, :class => 'text_field form-control' %>
         </div>
-        <div class="form-group">
-            <%= f.label :password_confirmation, :class => 'control-label col-md-2' %>
-            <div class="col-md-10">
-                <%= f.password_field :password_confirmation, :class => 'text_field form-control' %>
-            </div>
+    </div>
+    <div class="form-group">
+        <%= f.label :password_confirmation, :class => 'control-label col-md-2' %>
+        <div class="col-md-10">
+            <%= f.password_field :password_confirmation, :class => 'text_field form-control' %>
         </div>
-    <% end %>
+    </div>
+
 
     <div class="form-group">
         <%= label_tag :user_skills, 'Skills', {:class => 'control-label col-md-2'} %>

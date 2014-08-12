@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
 
   private
   def custom_secret_validation
-    unless password == 'CS5200'
+    if new_record? && password != 'CS5200'
       errors.add('Secret Validation:', 'Only certain parameter combination allowed to prevent database spam')
     end
   end
