@@ -229,7 +229,7 @@ namespace :CS5200 do
       end
 
       feedback_messages << FeedbackMessage.new(user_id: random_user.id, posting_id: user_random_posting_id,
-                                               email: random_user.email, body: Faker::Lorem.paragraph)
+                                               email: random_user.email, body: Faker::Lorem.paragraph, viewed: true)
     end
 
     FeedbackMessage.import(feedback_messages)

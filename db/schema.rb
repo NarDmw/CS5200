@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20140723221402) do
     t.integer  "posting_id"
     t.string   "email",      limit: 45
     t.text     "body"
+    t.boolean  "viewed",                default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
