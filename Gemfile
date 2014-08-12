@@ -12,6 +12,8 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 
+# Use Autogenerator
+gem 'bootstrap-sass-extras'
 gem 'select2-rails'
 gem 'bootstrap-slider-rails'
 
@@ -58,8 +60,6 @@ gem 'unicorn'
 # gem 'debugger', group: [:development, :test]
 
 group :development do
-  # Use Autogenerator
-  gem 'bootstrap-sass-extras'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
