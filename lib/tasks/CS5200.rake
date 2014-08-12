@@ -84,7 +84,8 @@ namespace :CS5200 do
       users << user
       used_names.add(user_name)
     end
-    User.import(users)
+    #validate is false because secret validation with password prevents the import
+    User.import(users, validate: false)
   end
 
   def default_users
