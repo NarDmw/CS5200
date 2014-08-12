@@ -15,8 +15,6 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav navbar-left">
                 <li id="navHome"><%= link_to 'Home', '/' %></li>
-                <li id="navAbout"><%= link_to 'About', page_path('about') %></li>
-                <li id="navContact"><%= link_to 'Contact', contact_path %></li>
                 <% if session[:user_id] %>
                     <li id="navPostings" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Postings<span class="caret"></span></a>
@@ -29,6 +27,8 @@
                         </ul>
                     </li>
                 <% end %>
+                <li id="navAbout"><%= link_to 'About', page_path('about') %></li>
+                <li id="navContact"><%= link_to 'Contact', contact_path %></li>
             </ul>
 
             <% if session[:user_id] %>
