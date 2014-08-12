@@ -6,6 +6,7 @@ class CreateReviews < ActiveRecord::Migration
       t.references :posting, index: true
       t.text :body
       t.integer :rating
+      t.boolean :viewed, default: false
 
       t.timestamps
     end

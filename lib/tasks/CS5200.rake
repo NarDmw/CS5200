@@ -184,9 +184,11 @@ namespace :CS5200 do
         #create the messages in that conversation
         (1..rand(3..5)).each do |i|
           if i.odd?
-            Message.create(conversation_id: conversation.id, sender_id: responder, recipient_id: poster, body: Faker::Lorem.paragraph)
+            Message.create(conversation_id: conversation.id, sender_id: responder, recipient_id: poster,
+                           body: Faker::Lorem.paragraph, viewed: true)
           else
-            Message.create(conversation_id: conversation.id, sender_id: poster, recipient_id: responder, body: Faker::Lorem.paragraph)
+            Message.create(conversation_id: conversation.id, sender_id: poster, recipient_id: responder,
+                           body: Faker::Lorem.paragraph, viewed: true)
           end
         end
 
@@ -195,7 +197,8 @@ namespace :CS5200 do
 
         #creates a review
         random_rating = rand(1..5)
-        Review.create(reviewer_id: poster, reviewee_id: responder, posting_id: posting.id, body: Faker::Lorem.paragraph, rating: random_rating)
+        Review.create(reviewer_id: poster, reviewee_id: responder, posting_id: posting.id, body: Faker::Lorem.paragraph,
+                      rating: random_rating, viewed: true)
 
         #updates the reviewee's status,
         #by increasing the number of responses by 1, and the cumulative score by the rating assigned

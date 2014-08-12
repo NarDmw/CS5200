@@ -32,19 +32,23 @@
     </dl>
 </div>
 
-<% if session[:user_is_admin?] %>
-    <div class="form-group">
-        <%= link_to t('.back', :default => t('helpers.links.back')),
-                    postings_path, :class => 'btn btn-default'  %>
+
+<div class="form-group">
+    <%= link_to t('.back', :default => t('helpers.links.back')),
+                postings_path(location: {id: @posting.location_id, name: @posting.location.to_s}),
+                :class => 'btn btn-default'  %>
+    <% if session[:user_id] == @posting.poster_id || session[:user_is_admin?] %>
         <%= link_to t('.edit', :default => t('helpers.links.edit')),
                     edit_posting_path(@posting), :class => 'btn btn-default' %>
+    <% elsif session[:user_is_admin?] %>
         <%= link_to t('.destroy', :default => t('helpers.links.destroy')),
                     posting_path(@posting),
                     :method => 'delete',
                     :data => { :confirm => t('.confirm', :default => t('helpers.links.confirm', :default => 'Are you sure?')) },
                     :class => 'btn btn-danger' %>
-    </div>
-<% end %>
+
+    <% end %>
+</div>
 
 <% if session[:user_skill_ids].include?(@posting.skill_id) &&
         session[:user_id] != @posting.poster_id && @posting.open_posting

@@ -1,42 +1,44 @@
 <%- model_class = FeedbackMessage -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+    <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
 <table class="table table-striped datatable">
-  <thead>
+    <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:user_id) %></th>
-      <th><%= model_class.human_attribute_name(:posting_id) %></th>
-      <th><%= model_class.human_attribute_name(:email) %></th>
-      <th><%= model_class.human_attribute_name(:body) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t('helpers.actions') %></th>
+        <th><%= model_class.human_attribute_name(:id) %></th>
+        <th><%= model_class.human_attribute_name(:user_id) %></th>
+        <th><%= model_class.human_attribute_name(:posting_id) %></th>
+        <th><%= model_class.human_attribute_name(:email) %></th>
+        <th><%= model_class.human_attribute_name(:body) %></th>
+        <th><%= model_class.human_attribute_name(:viewed) %></th>
+        <th><%= model_class.human_attribute_name(:created_at) %></th>
+        <th><%=t '.actions', :default => t('helpers.actions') %></th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
     <% @feedback_messages.each do |feedback_message| %>
-      <tr>
-        <td><%= feedback_message.id %></td>
-          <td><%= feedback_message.user %></td>
-          <td><%= feedback_message.posting_id %></td>
-          <td><%= feedback_message.email %></td>
-          <td><%= feedback_message.body %></td>
-        <td><%=l feedback_message.created_at, format: :long %></td>
-        <td>
-          <%= link_to feedback_message_path(feedback_message), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
-            <%= glyph 'info-sign' %>
-          <%- end -%>
-          <%= link_to edit_feedback_message_path(feedback_message), :class => 'btn btn-xs', :title => "#{ t('.edit', :default => t('helpers.links.edit')) }" do %>
-            <%= glyph 'pencil' %>
-          <%- end -%>
-          <%= link_to feedback_message_path(feedback_message), :method => :delete, :data => { :confirm => t('.confirm', :default => t('helpers.links.confirm', :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
-            <%= glyph 'remove' %>
-          <%- end -%>
-        </td>
-      </tr>
+        <tr>
+            <td><%= feedback_message.id %></td>
+            <td><%= feedback_message.user %></td>
+            <td><%= feedback_message.posting_id %></td>
+            <td><%= feedback_message.email %></td>
+            <td><%= feedback_message.body %></td>
+            <td><%= feedback_message.viewed %></td>
+            <td><%=l feedback_message.created_at, format: :long %></td>
+            <td>
+                <%= link_to feedback_message_path(feedback_message), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+                    <%= glyph 'info-sign' %>
+                <%- end -%>
+                <%= link_to edit_feedback_message_path(feedback_message), :class => 'btn btn-xs', :title => "#{ t('.edit', :default => t('helpers.links.edit')) }" do %>
+                    <%= glyph 'pencil' %>
+                <%- end -%>
+                <%= link_to feedback_message_path(feedback_message), :method => :delete, :data => { :confirm => t('.confirm', :default => t('helpers.links.confirm', :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+                    <%= glyph 'remove' %>
+                <%- end -%>
+            </td>
+        </tr>
     <% end %>
-  </tbody>
+    </tbody>
 </table>
 
 <%= link_to t('.new', :default => t('helpers.links.new')),
