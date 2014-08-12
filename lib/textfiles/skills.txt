@@ -141,6 +141,7 @@ Services	Life Coaching
 Services	Comedic Entertainment
 Services	Magic Entertainment
 Services	Acrobatic Entertainment
+Services    Piano Tuning
 Services	Modelling
 Services	Makeup Artistry
 Services	Knitting
