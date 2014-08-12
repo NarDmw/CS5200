@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
   before_action :confirm_logged_in
+  before_action :admin_only, only: [:index]
 
   # GET /reviews
   # GET /reviews.json

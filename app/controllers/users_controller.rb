@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :redirect_if_logged_in, only: [:new, :create]
   before_action :confirm_logged_in
-  before_action lambda{ restrict_permissions(@user.id) }, except: [:new, :create]
+  before_action :admin_only, only: [:index]
+  before_action lambda{ restrict_permissions(@user.id) }, except: [:new, :create, :index]
 
   # GET /users
   # GET /users.json

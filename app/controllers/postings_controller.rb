@@ -14,15 +14,17 @@ class PostingsController < ApplicationController
       @view_hashes[:location_name] = 'All Postings'
       @view_hashes[:locations] = hash_id_to_s(Location.all)
       @view_hashes[:users] = hash_id_to_s(User.all)
-      @postings = Posting.limit(100)
+      @postings = Posting.all
     elsif params[:my_posts]
       @view_hashes[:location_name] = 'My Postings'
-      @postings = Posting.where(poster_id: session[:user_id])
+      @postings = Posting.where(poster_id: session[:user_id], open_posting: true)
+    elsif params[:location]
+      @view_hashes[:location_name] = "Open Postings for #{params[:location][:name]}"
+      @postings = Posting.where(location_id: params[:location][:id], open_posting: true)
     else
-      @view_hashes[:location_name] = "Postings for #{Location.find(session[:user_location_id]).to_s}"
-      @postings = Posting.where(location_id: session[:user_location_id], open_posting: true)
+      flash[:error] = 'Please specify a Location'
+      redirect_to root_path
     end
-
   end
 
   # GET /postings/1
@@ -85,13 +87,13 @@ class PostingsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_posting
-      @posting = Posting.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_posting
+    @posting = Posting.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def posting_params
-      params.require(:posting).permit(:responder_id, :skill_id, :header, :body, :open_posting, :is_request, :duration)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def posting_params
+    params.require(:posting).permit(:responder_id, :skill_id, :header, :body, :open_posting, :is_request, :duration)
+  end
 end

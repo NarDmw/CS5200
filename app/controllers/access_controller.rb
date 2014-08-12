@@ -1,6 +1,4 @@
 class AccessController < ApplicationController
-  before_action :confirm_logged_in, except: [:attempt_login, :logout]
-
   #attempts a user_login
   def attempt_login
     authorized_user = nil
@@ -35,5 +33,4 @@ class AccessController < ApplicationController
     flash[:notice] = 'Logged out'
     redirect_to root_path
   end
-
 end

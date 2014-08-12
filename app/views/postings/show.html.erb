@@ -46,8 +46,10 @@
     </div>
 <% end %>
 
-<% if session[:user_skill_ids].include?(@posting.skill_id) %>
+<% if session[:user_skill_ids].include?(@posting.skill_id) &&
+        session[:user_id] != @posting.poster_id && @posting.open_posting
+%>
     <div class="form-group">
-        <%= link_to 'Respond', new_message_path, class: 'btn btn-primary' %>
+        <%= link_to 'Respond', new_message_path(posting_id: @posting.id), class: 'btn btn-primary' %>
     </div>
 <% end %>

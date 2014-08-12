@@ -15,6 +15,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def admin_only
+    if session[:user_is_admin?]
+      true
+    else
+      flash[:error] = 'You do not have permission to do that.'
+      redirect_to root_path
+      false
+    end
+  end
+
   def restrict_permissions(user_id)
     #checks to see if the user has permissions to view the current controller#action
     if session[:user_id] == user_id  || session[:user_is_admin?]
