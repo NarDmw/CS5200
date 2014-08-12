@@ -76,7 +76,7 @@ namespace :CS5200 do
 
 
       user = User.new(location_id: random_location, user_name: user_name,
-                        email: email, password: Faker::Internet.password,
+                        email: email, password: 'CS5200',
                         first_name: random_first_name, last_name: random_last_name)
 
       next unless user.valid?
