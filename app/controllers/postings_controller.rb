@@ -9,18 +9,21 @@ class PostingsController < ApplicationController
     @view_hashes = {}
     @view_hashes[:skills] = hash_id_to_s(Skill.all)
 
-    #TODO ajax the loading
     if session[:user_is_admin?]
-      @view_hashes[:location_name] = 'All Postings'
       @view_hashes[:locations] = hash_id_to_s(Location.all)
       @view_hashes[:users] = hash_id_to_s(User.all)
-      @postings = Posting.all
-    elsif params[:my_posts]
+    end
+
+    #TODO ajax the loading
+    if params[:my_posts]
       @view_hashes[:location_name] = 'My Postings'
       @postings = Posting.where(poster_id: session[:user_id], open_posting: true)
     elsif params[:location]
       @view_hashes[:location_name] = "Open Postings for #{params[:location][:name]}"
       @postings = Posting.where(location_id: params[:location][:id], open_posting: true)
+    elsif session[:user_is_admin?]
+        @view_hashes[:location_name] = 'All Postings'
+        @postings = Posting.all
     else
       flash[:error] = 'Please specify a Location'
       redirect_to root_path
